@@ -22,52 +22,73 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-  <header class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 
-    <!-- barre de navigation -->
-
-    <div class="container-fluid justify-content-center justify-content-md-between">
-      <div class="d-flex my-2 my-sm-0">
-        <a class="navbar-brand me-2 mb-1 d-flex justify-content-center ">
+  <!-- barre de navigation 23.01.19-21h20 -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand me-2 mb-1">
           <img src="logo-site.png" height="40" alt="logo" loading="lazy">
         </a>
+        <div class="title text-center text-white ">NOMDUSITEWEB</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav text-end ms-auto">
+            <li class="nav-item ">
+              <a class="nav-link text-white" href="index.html">
+                <span class="d-grid gap-2 d-lg-inline-block">Accueil</span>
+              </a>
+            </li>
+            <li class="nav-item" id="login-link">
+              <a class="nav-link text-white" href="#">
+                <span class="d-grid gap-2 d-lg-inline-block">Se connecter</span>
+              </a>
+            </li>
+            <li class="nav-item" id="my-account">
+              <a class="nav-link text-white" href="#">
+                <span class="d-grid gap-2 d-lg-inline-block">Mon Compte</span>
+              </a>
+            </li>
+            <li class="nav-item" id="my-events">
+              <a class="nav-link text-white" href="#">
+                <span class="d-grid gap-2 d-lg-inline-block">Mes événements</span>
+              </a>
+            </li>
+            <li class="nav-item" id="admin-events">
+              <a class="nav-link text-white" href="#">
+                <span class="d-grid gap-2 d-lg-inline-block">Gestion ADMIN</span>
+              </a>
+            </li>
+            <li class="nav-item" id="create-event">
+              <a class="nav-link text-white" href="#">
+                <span class="d-grid gap-2 d-lg-inline-block">Créer un événement</span>
+              </a>
+            </li>
+            <li class="nav-item" id="register-link">
+              <a class="nav-link text-white" href="#">
+                <span class="d-grid gap-2 d-lg-inline-block">S'inscrire</span>
+              </a>
+            </li>
+            <li class="nav-item" id="logout-link">
+              <a class="nav-link text-white" href="#">
+                <span class="d-grid gap-2 d-lg-inline-block">Se déconnecter</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul class="navbar-nav flex-row ">
-        <li class="nav-item me-3 me-lg-0">
-          <a class="nav-link text-center text-white">
-            <span class="">NOMDUSITEWEB</span>
-          </a>
-      </ul>
-      <ul class="navbar-nav flex-row">
-        <li class="nav-item me-3 me-lg-0">
-          <a class="nav-link text-white" href="index.html">
-            <span class="d-grid gap-2 d-lg-inline-block">Accueil</span>
-          </a>
-        </li>
-        <li class="nav-item me-3 me-lg-0" id="login-link">
-          <a class="nav-link text-white" href="#">
-            <span class="d-grid gap-2 d-lg-inline-block">Se connecter</span>
-          </a>
-        </li>
-        <li class="nav-item me-3 me-lg-0" id="register-link">
-          <a class="nav-link text-white" href="#">
-            <span class="d-grid gap-2 d-lg-inline-block">S'inscrire</span>
-          </a>
-        </li>
-        <li class="nav-item me-3 me-lg-0" id="logout-link">
-          <a class="nav-link text-white" href="#">
-            <span class="d-grid gap-2 d-lg-inline-block">Se déconnecter</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <script src="js/extention/connexion.js"></script>
+
+    </nav>
   </header>
 
-  <div class="main-content">
-    <div class="container mt-7 pt-5">
 
-      <!-- Informations 2023.01.06-16:50 -->
+
+  <!-- Informations 2023.01.06-16:50 -->
+  <div class="main-content my-auto">
+    <div class="container">
       <div class="row">
         <div class="col-xl-8 m-auto order-xl-1">
           <div class="card bg-light shadow">
