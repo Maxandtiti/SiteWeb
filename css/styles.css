@@ -1,4 +1,11 @@
+
 .card_size {
+  width: 28rem;
+  max-height: 35rem;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+.card_size_carousel {
   width: 28rem;
   max-height: 35rem;
   margin-right: auto !important;
@@ -12,8 +19,20 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   max-height: 15rem;
 }
+.card_img_carousel {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  max-height: 20rem;
+}
 
 .card_img img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.card_img_carousel img {
   height: 100%;
   width: auto;
   max-width: 100%;
@@ -59,3 +78,4 @@
   -webkit-box-shadow: inset 0 0 6px rgb(183, 138, 98);
   background-color: rgba(187, 11, 11, 0);
 }
+
