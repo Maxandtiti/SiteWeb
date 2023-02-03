@@ -552,9 +552,6 @@ button.bg-white:focus {
   }
 }
 
-#iframe {
-}
-
 .text-right {
   text-align: right !important;
 }
@@ -757,18 +754,17 @@ p {
 }
 
 .six-wrap {
-  min-width: 150px;
-  max-width: 185px;
-  padding-left: 16px;
+  min-width: 7.5rem;
+  max-width: 12.5rem;
   border-right: 0;
 }
 .six-wrap .btn-search {
-  height: 50px;
+  height: 3rem;
   width: 100%;
   background: #b78a62;
   white-space: nowrap;
-  border-radius: 5px;
-  font-size: 20px;
+  border-radius: 0.3rem;
+  font-size: clamp (0.1rem, 3.5vm, 10rem);
   color: #fff;
   transition: all 0.2s ease-out, color 0.2s ease-out;
   border: 0;
