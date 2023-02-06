@@ -59,7 +59,7 @@ public class UserApp implements java.io.Serializable {
 		this.idusers = idusers;
 	}
 	
-	@Column(name = "nickname", length = 45)
+	@Column(name = "nickname", length = 45, nullable = false)
 	public String getNickname() {
 		return this.nickname;
 	}
@@ -68,7 +68,7 @@ public class UserApp implements java.io.Serializable {
 		this.nickname = nickname;
 	}
 
-	@Column(name = "email", length = 45)
+	@Column(name = "email", length = 45, nullable = false)
 	public String getEmail() {
 		return this.email;
 	}
@@ -77,7 +77,7 @@ public class UserApp implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "password", length = 100)
+	@Column(name = "password", length = 100, nullable = false)
 	public String getPassword() {
 		return this.password;
 	}
@@ -108,7 +108,7 @@ public class UserApp implements java.io.Serializable {
 	
 	
 	
-	@Column(name = "city", length = 45)
+	@Column(name = "city", length = 100)
 	public String getCity() {
 		return this.city;
 	}
@@ -117,7 +117,7 @@ public class UserApp implements java.io.Serializable {
 		this.city = city;
 	}
 
-	@Column(name = "adress", length = 45)
+	@Column(name = "adress", length = 200)
 	public String getAdress() {
 		return this.adress;
 	}
@@ -127,7 +127,7 @@ public class UserApp implements java.io.Serializable {
 	}
 	
 
-	@Column(name = "zipcode", length = 45)
+	@Column(name = "zipcode")
 	public String getZipcode() {
 		return this.zipcode;
 	}
@@ -137,7 +137,7 @@ public class UserApp implements java.io.Serializable {
 	}
 
 	
-	@Column(name = "role", length = 45)
+	@Column(name = "role", length = 20)
 	public String getRole() {
 		return this.role;
 	}
