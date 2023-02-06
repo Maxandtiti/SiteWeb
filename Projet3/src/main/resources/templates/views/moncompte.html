@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon compte</title>
-  <link rel="shortcut icon" href="logo-shortcut.png">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -16,8 +16,9 @@
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-  <link href="css/avancee.css" rel="stylesheet">
+  <link href="../css/avancee.css" rel="stylesheet">
 
 </head>
 
@@ -25,64 +26,10 @@
 
   <!-- barre de navigation 23.01.19-21h20 -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand me-2 mb-1">
-          <img src="logo-site.png" height="40" alt="logo" loading="lazy">
-        </a>
-        <div class="title text-center text-white ">NOMDUSITEWEB</div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-          <ul class="navbar-nav text-end ms-auto">
-            <li class="nav-item ">
-              <a class="nav-link text-white" href="index.html">
-                <span class="d-grid gap-2 d-lg-inline-block">Accueil</span>
-              </a>
-            </li>
-            <li class="nav-item" id="login-link">
-              <a class="nav-link text-white" href="#">
-                <span class="d-grid gap-2 d-lg-inline-block">Se connecter</span>
-              </a>
-            </li>
-            <li class="nav-item" id="my-account">
-              <a class="nav-link text-white" href="#">
-                <span class="d-grid gap-2 d-lg-inline-block">Mon Compte</span>
-              </a>
-            </li>
-            <li class="nav-item" id="my-events">
-              <a class="nav-link text-white" href="#">
-                <span class="d-grid gap-2 d-lg-inline-block">Mes événements</span>
-              </a>
-            </li>
-            <li class="nav-item" id="admin-events">
-              <a class="nav-link text-white" href="#">
-                <span class="d-grid gap-2 d-lg-inline-block">Gestion ADMIN</span>
-              </a>
-            </li>
-            <li class="nav-item" id="create-event">
-              <a class="nav-link text-white" href="#">
-                <span class="d-grid gap-2 d-lg-inline-block">Créer un événement</span>
-              </a>
-            </li>
-            <li class="nav-item" id="register-link">
-              <a class="nav-link text-white" href="#">
-                <span class="d-grid gap-2 d-lg-inline-block">S'inscrire</span>
-              </a>
-            </li>
-            <li class="nav-item" id="logout-link">
-              <a class="nav-link text-white" href="#">
-                <span class="d-grid gap-2 d-lg-inline-block">Se déconnecter</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    </nav>
+ 
   </header>
+
+      			 
 
 
 
@@ -91,59 +38,59 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-10 m-auto">
-          <div class="card bg-light shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0 text-dark">Mon compte</h3>
-                </div>
-                <div class="col-lg-4 text-right six-wrap px-4 mx-4">
-                  <button class="btn-search" type="button">Modifier</button>
-                </div>
+     <form action="#" th:action="@{/moncompte}" method="POST" th:object="${user}">
+  <div class="card bg-light shadow">
+    <div class="card-header border-0">
+      <div class="col align-items-center">
+        <input type="hidden" th:field="*{idusers}">
 
-              </div>
+        <h3 class="mb-0 text-dark ">Mon compte</h3>
+        <div class="float-end six-wrap"> 
+          <button class="btn-search" type="button" id="edit-button">Modifier</button>
+        </div>
+        <div class="float-end six-wrap mx-2"> 
+          <button class="btn-search" id="validate-button" type="submit"  style="display: none;" >Valider</button>
+        </div>
+        <div class="float-end six-wrap"> 
+          <button class="btn-search" type="button" id="cancel-button" style="background-color: #6c757d; display: none;">Annuler</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h6 class="heading-small text-muted mb-4" >Informations utilisateur</h6>
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group focused">
+              <label class="form-control-label">Pseudonyme</label>
+              <div class="text-dark p-2 fw-bold" th:text="*{nickname}"></div>
             </div>
-            <div class="card-body">
-              <form>
-                <h6 class="heading-small text-muted mb-4">Informations utilisateur</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="input-username">Pseudonyme</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative"
-                          placeholder="Pseudonyme">
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Adresse Email</label>
+              <div class="text-dark p-2 fw-bold"  th:text="*{email}"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group focused">
+              <label class="form-control-label">Nom</label>
+              <p class="text-dark p-2 fw-bold"  th:text="*{lastName}"></p>
+              <input type="text" class="form-control form-control-alternative text-dark"
+                placeholder="Nom" th:field="*{lastName}" name="lastName">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group focused">
+                        <label class="form-control-label">Prénom</label>
+                        <p class="text-dark p-2 fw-bold"  th:text=*{firstName}></p>
+                        <input type="text" class="form-control form-control-alternative text-dark"
+                          placeholder="Prénom" th:field="*{firstName}" name="firstName">
                       </div>
                     </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-email">Adresse Email</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative"
-                          placeholder="Adresse Email">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="input-first-name">Nom</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative"
-                          placeholder="Nom">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="input-last-name">Prénom</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative"
-                          placeholder="Prénom">
-                      </div>
-                    </div>
-                    <div class="seven-wrap mt-3 text-center">
-                      <button class="btn-search" type="button" data-bs-toggle="modal" data-bs-target="#modal_mdp"
-                        style="background-color: #6c757d; font-size: 15px;">Changer
-                        le mot de passe</button>
 
-                    </div>
                   </div>
                 </div>
                 <hr class="my-4">
@@ -152,83 +99,150 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-address">Adresse</label>
-                        <input id="input-address" class="form-control form-control-alternative" placeholder="Adresse"
-                          type="text">
+                        <label class="form-control-label">Adresse</label>
+                        <p class="text-dark p-2 fw-bold"  th:text=*{adress}></p>
+                        <input class="form-control form-control-alternative text-dark" placeholder="Adresse"
+                          type="text" th:field="*{adress}" name="adress">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-7">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-city">Ville</label>
-                        <input type="text" id="input-city" class="form-control form-control-alternative"
-                          placeholder="Ville">
+                        <label class="form-control-label">Ville</label>
+                           
+                        <p class="text-dark p-2 fw-bold"  th:text=*{city}></p>
+                        <input type="text" class="form-control form-control-alternative text-dark"
+                          placeholder="Ville" th:field="*{city}" name="city">
                       </div>
                     </div>
                     <div class="col-lg-5">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-country">Code Postal</label>
-                        <input type="number" id="input-country" class="form-control form-control-alternative"
-                          placeholder="Code postal">
+                        <label class="form-control-label">Code Postal</label>
+                        <p class="text-dark p-2 fw-bold"  th:text=*{zipcode}></p>
+                        <input type="number" class="form-control form-control-alternative text-dark"
+                          placeholder="Code postal" th:field="*{zipcode}" name="zipcode">
                       </div>
                     </div>
                   </div>
                 </div>
-                <hr class="my-4">
-              </form>
+                  </form>
+                    <div class="seven-wrap mt-3 text-center">
+                      <button class="btn-search" type="button" id="changepass" data-bs-toggle="modal" data-bs-target="#modal_mdp"
+                        style="background-color: #6c757d; font-size: 15px;">Changer
+                        le mot de passe</button>
+                    </div>      
             </div>
           </div>
-        </div>
+       </div>
       </div>
-    </div>
+  </div>
   </div>
 
 
 
   <div class="modal fade" id="modal_mdp" tabindex="-1" aria-labelledby="modal_mdp" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Changement de mot de passe</h5>
+          <h5 class="modal-title">Changement de mot de passe</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label class="form-label" for="old-password">Ancien mot de passe</label>
-              <input type="password" id="old-password" class="form-control">
-            </div>
+           <form action="#" th:action="@{/updatePassword}" th:id="updatePassword" method="POST" th:object="${user}">
+            <input type="hidden" th:field="*{idusers}">
+            
             <div class="mb-3">
               <label class="form-label" for="new-password">Nouveau mot de passe</label>
-              <input type="password" id="new-password" class="form-control">
+              <input type="text" id="newpassword"  class="form-control keep-visible">
             </div>
             <div class="mb-3">
               <label class="form-label" for="repeat-password">Répéter le nouveau de mot de passe</label>
-              <input type="password" id="repeat-password" class="form-control">
+              <input type="text" id="repeatpassword" class="form-control keep-visible" name="password">
+              <span class="form-control-label" id="message"></span>
             </div>
-          </form>
+        
+     
+      
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-          <button type="button" class="btn text-white" style="background-color: #b78a62;">Changer</button>
+          <button type="button" class="btn btn-secondary" id="cancelbutton" data-bs-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn text-white" id="change" style="background-color: #b78a62;">Changer</button>
+
         </div>
-      </div>
+        </form>
+      </div>  
     </div>
   </div>
 
 
+ 
 
-  <!-- Pied de page -->
-  <footer class="mt-auto bg-dark text-center text-light">
-    <div class="container">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="about.html" class="nav-link px-2 text-white">A propos</a></li>
-        <li class="nav-item"><a href="contacts.html" class="nav-link px-2 text-white">Contact</a></li>
-      </ul>
-      <p class="text-center text-white">Copyright 2023 ®</p>
-    </div>
-  </footer>
-</body>
+<script>
+$(document).ready(function () {
+  $("input:not(.keep-visible)").hide();
+  $("#edit-button").click(function () {
+    $("p").hide();
+    $("input").show();
+  });
+});
+
+
+
+$(document).ready(function () {
+  $("#cancel-button").click(function () {
+    $("p").show();
+    $("input").hide();
+  });
+});
+
+$(document).ready(function () {
+	  $("#cancelbutton").click(function () {
+	    $("p").show();
+	    $("input").hide();
+	  });
+	});
+
+
+
+
+$(document).ready(function () {
+$("#changepass").click(function () {
+    $("p").hide();
+    $("input").show();
+  });
+});
+
+
+
+$(document).ready(function() {
+      $("#edit-button").click(function() {
+        $("#edit-button").hide();
+        $("#cancel-button").show();
+        $("#validate-button").show();
+      });
+      $("#cancel-button").click(function() {
+        $("#edit-button").show();
+        $("#cancel-button").hide();
+        $("#validate-button").hide();
+      });
+    });
+  </script>
+
+
+
+
+<script>
+
+$('#change').click(function() {
+  if ($('#newpassword').val() != $('#repeatpassword').val()) {
+    $('#message').html('Mots de passe non identiques').css('color', 'red');
+    return false;
+  } else {
+    $('#message').html('Succès').css('color', 'green');
+  }
+});
+
+</script> 
 
 </html>
