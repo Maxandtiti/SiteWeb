@@ -1,15 +1,15 @@
 package fr.formation.inti.entity;
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-
-
-
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 
@@ -22,7 +22,11 @@ public class UserApp implements java.io.Serializable {
 	
 	private Integer idusers;
 	private String nickname;
+	@NotNull
+    @NotEmpty
 	private String email;
+	@NotNull
+    @NotEmpty
 	private String password;
 	private String firstName;
 	private String lastName;
@@ -30,6 +34,8 @@ public class UserApp implements java.io.Serializable {
 	private String city;
 	private String zipcode;
 	private String role;
+	private String encrytedPassword;
+	private boolean enabled;
 	
 	
 	public UserApp() {
@@ -42,11 +48,22 @@ public class UserApp implements java.io.Serializable {
 		this.password = password;
 	}
 
+	public String getEncrytedPassword() {
+        return encrytedPassword;
+    }
 
+    public void setEncrytedPassword(String encrytedPassword) {
+        this.encrytedPassword = encrytedPassword;
+    }
+	
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-
-
-
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
