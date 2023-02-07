@@ -20,16 +20,16 @@ public class UserApp implements java.io.Serializable {
 
 	
 	
-	private Integer idusers;
-	private String nickname;
-	private String email;
-	private String password;
-	private String firstName;
-	private String lastName;
-	private String adress;
-	private String city;
-	private String zipcode;
-	private String role;
+	public Integer idusers;
+	public String nickname;
+	public String email;
+	public String password;
+	public String firstName;
+	public String lastName;
+	public String adress;
+	public String city;
+	public Integer zipcode;
+	public String role;
 	
 	
 	public UserApp() {
@@ -37,13 +37,33 @@ public class UserApp implements java.io.Serializable {
 	
 
 	
-	public UserApp(String email, String password) {
+
+	public UserApp(Integer idusers, String nickname, String email, String firstName, String lastName,
+			String adress, String city, Integer zipcode) {
+		this.idusers = idusers;
+		this.nickname = nickname;
 		this.email = email;
-		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.adress = adress;
+		this.city = city;
+		this.zipcode = zipcode;
 	}
 
 
-
+	public UserApp(Integer idusers, String nickname, String email, String password, String firstName, String lastName,
+			String adress, String city, Integer zipcode, String role) {
+		this.idusers = idusers;
+		this.nickname = nickname;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.adress = adress;
+		this.city = city;
+		this.zipcode = zipcode;
+		this.role = role;
+	}
 
 
 
@@ -51,11 +71,11 @@ public class UserApp implements java.io.Serializable {
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idusers", unique = true, nullable = false)
-	public Integer getidUser() {
+	public Integer getidusers() {
 		return this.idusers;
 	}
 
-	public void setidUser(Integer idusers) {
+	public void setidusers(Integer idusers) {
 		this.idusers = idusers;
 	}
 	
@@ -86,7 +106,7 @@ public class UserApp implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "firstName", length = 45)
+	@Column(name = "firstname", length = 45, nullable = false)
 	public String getfirstName() {
 		return this.firstName;
 	}
@@ -97,7 +117,7 @@ public class UserApp implements java.io.Serializable {
 	
 	
 	
-	@Column(name = "lastName", length = 45)
+	@Column(name = "lastname", length = 45, nullable = false)
 	public String getlastName() {
 		return this.lastName;
 	}
@@ -128,11 +148,11 @@ public class UserApp implements java.io.Serializable {
 	
 
 	@Column(name = "zipcode")
-	public String getZipcode() {
+	public Integer getZipcode() {
 		return this.zipcode;
 	}
 
-	public void setZipcode(String zipcode) {
+	public void setZipcode(Integer zipcode) {
 		this.zipcode = zipcode;
 	}
 
@@ -148,7 +168,7 @@ public class UserApp implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "isers [idusers=" + idusers + ", nickname=" + nickname + ", email=" + email + ", password=" + password
+		return "Users [idusers=" + idusers + ", nickname=" + nickname + ", email=" + email + ", password=" + password
 				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
