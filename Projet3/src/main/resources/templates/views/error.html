@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"> 
+	<head>
+		<title>Registration Success</title>
+	</head>
+	<body>
+		<center>
+			<span th:text="${message}"></span>
+		</center>
+		<div class="row">
+		<div class="col">
+		<p>You will be redirect in </p>
+		</div>
+		<div class="col">
+		<div id="counter">5</div>
+		</div>
+    <script>
+        setInterval(function() {
+            var div = document.querySelector("#counter");
+            var count = div.textContent * 1 - 1;
+            div.textContent = count;
+            if (count <= 0) {
+                window.location.replace("/");
+            }
+        }, 1000);
+    </script>
+		
+	</body>
+</html>

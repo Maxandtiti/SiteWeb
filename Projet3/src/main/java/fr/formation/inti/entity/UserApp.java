@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class UserApp implements java.io.Serializable {
 
 	
