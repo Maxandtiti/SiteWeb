@@ -6,6 +6,8 @@ import fr.formation.inti.entity.UserApp;
 
 public interface UserAppRepository extends JpaRepository<UserApp, Integer> {
 
+
 	
+
 	
 }

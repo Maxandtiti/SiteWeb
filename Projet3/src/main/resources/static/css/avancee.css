@@ -890,3 +890,24 @@ p {
   width: 100%;
   position: absolute;
 }
+
+
+.pagination .page-item a {
+    color: black;
+     background-color: #e6dac6;
+}
+
+.pagination .page-item.active a {
+    color: black;
+}
+
+
+.search:hover{
+	text-align: center;
+}
+
+.pagination-detail .btn.dropdown-toggle {
+	color: black;
+    background-color: #e6dac6;
+}
+

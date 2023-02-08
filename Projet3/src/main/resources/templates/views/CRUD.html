@@ -1,10 +1,5 @@
-
-
-
-
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
 
 
@@ -12,7 +7,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bienvenue sur NOMDUSITE</title>
-<link rel="shortcut icon" href="logo-shortcut.png">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -32,10 +26,11 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.16.0/dist/locale/bootstrap-table-fr-FR.min.js"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/Maxandtiti/NvTestGithub/main/main.css?token=GHSAT0AAAAAAB5UFV7ZR2MLATGJSASWRG5EY6HYMNQ">
-	
-<link rel="stylesheet" href="C:\Users\somme\Desktop\Panel_site/main.css">
-<link rel="stylesheet" href="C:\Users\somme\Desktop\Panel_site/avancee.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/Maxandtiti/NvTestGithub/main/main.css?token=GHSAT0AAAAAAB5UFV7ZR2MLATGJSASWRG5EY6HYMNQ">
+
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/avancee.css">
 
 
 
@@ -44,235 +39,119 @@
 
 
 <body class="d-flex flex-column min-vh-100">
-	    
-          
-    
-<!DOCTYPE html>
+
+
+
+	<!DOCTYPE html>
 <html>
 
 
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<div class="navbar-nav flex-row me-auto justify-content-start">
-        <div class="nav-item me-3 me-lg-0">
-          <a class="nav-link text-white" href="/Projetlogin/session">
-            <span class="d-grid gap-2 d-lg-inline-block">Accueil</span>
-          </a>
-       </div>
-
-
-
-
-    <div class="nav-item me-3 me-lg-0" id="logout-link">
-    <a class="nav-link text-white" href="/Projetlogin/listUser">
-      <span class="d-grid gap-2 d-lg-inline-block">Liste des employés</span>
-    </a>
-  </div>
-  
-
-
-
-
-
-    <div class="nav-item me-3 me-lg-0" id="logout-link">
-    <a class="nav-link text-white" href="/Projetlogin/listUsers">
-      <span class="d-grid gap-2 d-lg-inline-block">Liste des utilisateurs</span>
-    </a>
-  </div>
-  
-
-
-</div>
-<div class="navbar-nav d-flex">
-
-
-  <a class="nav-link text-white " href="/Projetlogin/loggedout">
-            <span class="d-inline">Se déconnecter</span>
-          </a>
-  
-
-
-    </div>
-    </div>
-    </div>
-</nav>
-
-
 </html>
 
 
-	<div class="row my-auto">
-		<div class="col-11 mx-auto order-1">
-			<div class="card bg-secondary shadow"></div>
-
-
-			<div style="margin-top: 100px;">
-				<div class="card-header border-0">
-					<div class="row">
-						<div class="col-lg-2"></div>
-						<div class="col text-center my-auto">
-							<h2>Liste des utilisateurs</h2>
-						</div>
-						<div class="col-2 text-right" style="text-align: center;">
-							<input type="text" id="customSearch" placeholder="Rechercher"
-								class="form-control">
-						</div>
+<div class="row my-auto">
+	<div class="col-11 mx-auto order-1">
+		<div style="margin-top: 100px;">
+			<div class="card-header border-0">
+				<div class="row">
+					<div class="col-lg-2"></div>
+					<div class="col text-center my-auto">
+						<h2>Liste de mes événements</h2>
+					</div>
+					<div class="col-2 text-right" style="text-align: center;">
+						<input type="text" id="customSearch" placeholder="Rechercher"
+							class="form-control">
 					</div>
 				</div>
-
-
-				<table data-toggle="table" data-pagination="true"
-					data-page-size="[10]" data-locale="fr-FR" data-search="true"
-					data-search-selector="#customSearch"
-					class="table table-light table-striped text-center">
-
-					<thead>
-						<tr>
-							<th class="text-center" data-sortable="true">Images</th>
-							<th class="text-center" data-sortable="true">Nom du site</th>
-							<th class="text-center" data-sortable="true">Description</th>
-							<th class="text-center" data-sortable="true">Dates</th>
-							<th class="text-center" data-sortable="true">Horaires</th>
-							<th class="text-center" data-sortable="true">Accessibilité</th>
-							<th class="text-center" data-sortable="true">Adresse</th>
-							<th class="text-center">Actions</th>
-						</tr>
-
-					</thead>
-					<tbody>
-						
-							<tr>
-								<td class="text-center"><img src="C:\Users\somme\Desktop\Panel_site/create.png" class="img-fluid img-thumbnail" style="max-height: 15rem;"/></td>
-								<td class="text-center">Je suis un événement</td>
-								<td class="text-center">Je suis un événement super cool avec ma description</td>
-								<td class="text-center">19/01/2023</td>
-								<td class="text-center">Du lundi au Vendredi, de 8h30 à 16:30</td>
-								<td class="text-center">Moteur, Psychique</td>
-								<td class="text-center">Adresse 59000 Lille</td>
-								<td class="text-center"><a
-									href="/Projetlogin/editUser?idUser=19"
-									class="btn btn-primary btn-sm 
- 
-		
-	
-
- ">Editer</a>
-									<a
-									href="/Projetlogin/deleteUser?idUser=19"
-									class="btn btn-danger btn-sm 
-
-
-
-">Supprimer</a>
-								</td>
-							</tr>
-						
-							<tr>
-								<td class="text-center"><img src="C:\Users\somme\Desktop\Panel_site/create.png" class="img-fluid img-thumbnail" style="max-height: 15rem;"/></td>
-								<td class="text-center">Je suis un événement</td>
-								<td class="text-center">Je suis un événement super cool avec ma description</td>
-								<td class="text-center">19/01/2023</td>
-								<td class="text-center">Du lundi au Vendredi, de 8h30 à 16:30</td>
-								<td class="text-center">Moteur, Psychique</td>
-								<td class="text-center">Adresse 59000 Lille</td>
-								<td class="text-center"><a
-									href="/Projetlogin/editUser?idUser=24"
-									class="btn btn-primary btn-sm 
- 
-		
-	
-
- ">Editer</a>
-									<a
-									href="/Projetlogin/deleteUser?idUser=24"
-									class="btn btn-danger btn-sm 
-
-
-
-">Supprimer</a>
-								</td>
-							</tr>
-						
-							<tr>
-								<td class="text-center"><img src="C:\Users\somme\Desktop\Panel_site/create.png" class="img-fluid img-thumbnail" style="max-height: 15rem;"/></td>
-								<td class="text-center">Je suis un événement</td>
-								<td class="text-center">Je suis un événement super cool avec ma description</td>
-								<td class="text-center">19/01/2023</td>
-								<td class="text-center">Du lundi au Vendredi, de 8h30 à 16:30</td>
-								<td class="text-center">Moteur, Psychique</td>
-								<td class="text-center">Adresse 59000 Lille</td>
-								<td class="text-center"><a
-									href="/Projetlogin/editUser?idUser=25"
-									class="btn btn-primary btn-sm 
- 
-		
-	
-
- ">Editer</a>
-									<a
-									href="/Projetlogin/deleteUser?idUser=25"
-									class="btn btn-danger btn-sm 
-
-
-
-">Supprimer</a>
-								</td>
-							</tr>
-						
-							<tr>
-								<td class="text-center"><img src="C:\Users\somme\Desktop\Panel_site/create.png" class="img-fluid img-thumbnail" style="max-height: 15rem;"/></td>
-								<td class="text-center">Je suis un événement</td>
-								<td class="text-center">Je suis un événement super cool avec ma description</td>
-								<td class="text-center">19/01/2023</td>
-								<td class="text-center">Du lundi au Vendredi, de 8h30 à 16:30</td>
-								<td class="text-center">Moteur, Psychique</td>
-								<td class="text-center">Adresse 59000 Lille</td>
-								<td class="text-center"><a
-									href="/Projetlogin/editUser?idUser=32"
-									class="btn btn-primary btn-sm 
- 
-		
-	
-
- ">Editer</a>
-									<a
-									href="/Projetlogin/deleteUser?idUser=32"
-									class="btn btn-danger btn-sm 
-
-
-
-">Supprimer</a>
-								</td>
-							</tr>
-
-						
-					</tbody>
-				</table>
 			</div>
+
+			<table data-toggle="table"
+				data-url="http://localhost:8080/api/myevents" data-pagination="true"
+				data-page-size="[10]" data-locale="fr-FR" data-search="true"
+				data-search-selector="#customSearch"
+				class="table table-light table-striped text-center">
+
+				<thead>
+					<tr>
+						<th data-field="preview" data-formatter="previewFormatter">Image</th>
+						<th data-field="title">Titre</th>
+						<th data-field="times">Dates</th>
+						<th data-field="city">Ville</th>
+						<th data-field="description">Description</th>
+						<th data-field="idmyevents" data-formatter="buttons">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+
+
+
+
+				</tbody>
+			</table>
 		</div>
 	</div>
-
-
-  <!-- Pied de page 23.01.04-11:13 -->
-  <footer class="mt-auto bg-dark text-center text-light">
-    <div class="container">
-      <ul class="nav justify-content-center border-bottom pb-2 mb-2">
-
-        <li class="nav-item">
-          <a href="/Projetlogin/contact" class="nav-link px-2 text-white">Contact</a>
-        </li>
-      </ul>
-      <p class="text-center text-white">Copyright 2023 ®</p>
-    </div>
-  </footer>
+</div>
 
 
 
+     <!-- Modal -->
+          <div class="modal fade" id="DeleteEvent" tabindex="-1" aria-labelledby="DeleteEventLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                 <form action="#" th:action="@{/mesevenements/delete}" method="POST" th:object="${myevents}">
+                 <input type="hidden" name="idmyevents">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="DeleteEventLabel">Suppression d'un événement</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+     						<div class="modal-body"><span>${row.title}</span>
+						</div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                  <button type="submit" class="btn btn-danger" data-idmyevents="${row.idmyevents}">Supprimer</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>  
 
 
-</html>
+
+
 
 
 </body>
+
+
+<script>
+
+// Ajouter les boutons Editer et Supprimer pour chaque élément de la ligne
+ 
+function buttons(value, row) {
+  return `<a href="/edit/${row.idmyevents}" class="btn btn-primary btn-sm">Editer</a> 
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#DeleteEvent" data-idmyevents="${row.idmyevents}"  data-title="${row.title}">Supprimer</button>`;
+
+}
+
+
+// Envoyer les données de l'ID pour chaque élément dans le modal
+
+$('#DeleteEvent').on('show.bs.modal', function (event) {
+	let button = $(event.relatedTarget) 
+	let title = button.data('title');
+	let idmyevents = button.data('idmyevents') 
+	let modal = $(this)
+	
+	 document.querySelector("#DeleteEvent input[name='idmyevents']").value = idmyevents;
+	 document.querySelector("#DeleteEvent span").innerHTML = `Êtes vous sûre de vouloir supprimer l'événement <b style="font-weight: bold;">${title}</b> ?`;
+	})  
+
+	function previewFormatter(value, row, index) {
+		return "<img src='" + value + "' alt='Image' height='75' width='75'>";
+	}
+</script>
+
+
 </html>

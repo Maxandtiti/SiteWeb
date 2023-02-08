@@ -18,6 +18,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+
   <link href="../css/avancee.css" rel="stylesheet">
 
 </head>
@@ -63,13 +64,14 @@
           <div class="col-lg-6">
             <div class="form-group focused">
               <label class="form-control-label">Pseudonyme</label>
-              <div class="text-dark p-2 fw-bold" th:text="*{nickname}"></div>
+              <input type="text" class="form-control form-control-alternative text-dark antidisabled" disabled th:field="*{nickname}">
+              
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">
               <label class="form-control-label">Adresse Email</label>
-              <div class="text-dark p-2 fw-bold"  th:text="*{email}"></div>
+              <input type="text" class="form-control form-control-alternative text-dark antidisabled" disabled th:field="*{email}">
             </div>
           </div>
         </div>
@@ -77,17 +79,15 @@
           <div class="col-lg-6">
             <div class="form-group focused">
               <label class="form-control-label">Nom</label>
-              <p class="text-dark p-2 fw-bold"  th:text="*{lastName}"></p>
               <input type="text" class="form-control form-control-alternative text-dark"
-                placeholder="Nom" th:field="*{lastName}" name="lastName">
+                placeholder="Nom" th:field="*{lastName}" name="lastName" disabled>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group focused">
                         <label class="form-control-label">Prénom</label>
-                        <p class="text-dark p-2 fw-bold"  th:text=*{firstName}></p>
                         <input type="text" class="form-control form-control-alternative text-dark"
-                          placeholder="Prénom" th:field="*{firstName}" name="firstName">
+                          placeholder="Prénom" th:field="*{firstName}" name="firstName" disabled>
                       </div>
                     </div>
 
@@ -100,9 +100,8 @@
                     <div class="col-md-12">
                       <div class="form-group focused">
                         <label class="form-control-label">Adresse</label>
-                        <p class="text-dark p-2 fw-bold"  th:text=*{adress}></p>
                         <input class="form-control form-control-alternative text-dark" placeholder="Adresse"
-                          type="text" th:field="*{adress}" name="adress">
+                          type="text" th:field="*{adress}" name="adress" disabled>
                       </div>
                     </div>
                   </div>
@@ -110,18 +109,15 @@
                     <div class="col-lg-7">
                       <div class="form-group focused">
                         <label class="form-control-label">Ville</label>
-                           
-                        <p class="text-dark p-2 fw-bold"  th:text=*{city}></p>
                         <input type="text" class="form-control form-control-alternative text-dark"
-                          placeholder="Ville" th:field="*{city}" name="city">
+                          placeholder="Ville" th:field="*{city}" name="city" disabled>
                       </div>
                     </div>
                     <div class="col-lg-5">
                       <div class="form-group focused">
                         <label class="form-control-label">Code Postal</label>
-                        <p class="text-dark p-2 fw-bold"  th:text=*{zipcode}></p>
                         <input type="number" class="form-control form-control-alternative text-dark"
-                          placeholder="Code postal" th:field="*{zipcode}" name="zipcode">
+                          placeholder="Code postal" th:field="*{zipcode}" name="zipcode" disabled>
                       </div>
                     </div>
                   </div>
@@ -179,55 +175,33 @@
  
 
 <script>
-$(document).ready(function () {
-  $("input:not(.keep-visible)").hide();
-  $("#edit-button").click(function () {
-    $("p").hide();
-    $("input").show();
-  });
+
+const inputs = document.querySelectorAll("input[disabled]:not(.antidisabled)");
+const modifyButton = document.querySelector("#edit-button");
+const cancelButton = document.querySelector("#cancel-button");
+const changePasswordButton = document.querySelector("#changepass");
+
+modifyButton.addEventListener("click", function () {
+  inputs.forEach(input => input.removeAttribute("disabled"));
+  $("#edit-button").hide();
+  $("#cancel-button").show();
+  $("#validate-button").show();
 });
 
-
-
-$(document).ready(function () {
-  $("#cancel-button").click(function () {
-    $("p").show();
-    $("input").hide();
-  });
+cancelButton.addEventListener("click", function () {
+  inputs.forEach(input => input.setAttribute("disabled", true));
+  $("#edit-button").show();
+  $("#cancel-button").hide();
+  $("#validate-button").hide();
 });
 
-$(document).ready(function () {
-	  $("#cancelbutton").click(function () {
-	    $("p").show();
-	    $("input").hide();
-	  });
-	});
-
-
-
-
-$(document).ready(function () {
-$("#changepass").click(function () {
-    $("p").hide();
-    $("input").show();
-  });
+changePasswordButton.addEventListener("click", function () {
+  inputs.forEach(input => input.setAttribute("disabled", true));
+  $("#edit-button").show();
+  $("#cancel-button").hide();
+  $("#validate-button").hide();
 });
-
-
-
-$(document).ready(function() {
-      $("#edit-button").click(function() {
-        $("#edit-button").hide();
-        $("#cancel-button").show();
-        $("#validate-button").show();
-      });
-      $("#cancel-button").click(function() {
-        $("#edit-button").show();
-        $("#cancel-button").hide();
-        $("#validate-button").hide();
-      });
-    });
-  </script>
+ </script>
 
 
 

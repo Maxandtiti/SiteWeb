@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.formation.inti.entity.UserApp;
 import fr.formation.inti.repository.UserAppRepository;
@@ -73,43 +72,11 @@ public class MyAccountController {
 		userRepository.save(utilisateur);
 		return "redirect:/moncompte/"+user.getidusers();
 		
-		
-		/*
-		if (oldinputpass.equals(oldpass)) {
 
-			return "redirect:/moncompte/"+user.getidusers();
-		
-		} else {
-			
-			error = false;
-
-			model.addAttribute("error", error);
-			model.addAttribute("errormessage", "Mauvais mot de passe");
-			
-			
-			
-			
-		}
-		*/
-		
-		
 	
 		
 		
 	}
 	
-	
-	
-	/*
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String editEmpPOST(@Validated @ModelAttribute("emp") Employee employee, BindingResult br, Model model) throws java.text.ParseException  {
-			
 
-		empService.saveEmployee(employee);
-		logger.warn("Info de l'edit de l'employé : " + employee);
-	    return "redirect:/listEmployee";
-	
-	}
-	}
-	*/
 }
