@@ -1,0 +1,130 @@
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+	<!-- Barre de recherche 23.01.06-16:10 -->
+	<div th:fragment="_search" >
+	<div class="main-content">
+		<div class="container-fluid mt-7 pt-5">
+			<fieldset>
+				<div class="text-center">
+					<fieldset>
+						<legend>
+							<h2>Des milliers d'événements près de chez vous</h2>
+						</legend>
+					</fieldset>
+				</div>
+			</fieldset>
+			<div class="card bg-light shadow">
+				<div class="card-body text-center ">
+					<form action="#" th:action="@{/searchform}" th:object="${formulaire}" method="post">
+						<div class="row mt-2 justify-content-center">
+							<div class="col-lg-4 ">
+								<div class="form-group focused">
+									<input type="text" id="keywords" th:field="*{keywords}"
+										class="form-control form-control-alternative"
+										placeholder="Entrer des mots-clés">
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="form-group">
+									<input type="text" id="city" th:field="*{city}"
+										class="form-control form-control-alternative"
+										placeholder="Ville">
+								</div>
+							</div>
+							<div class="col-lg-2 mb-4">
+								<select class="form-control form-control-alternative">
+									<option value="Enter_radius">Rayon</option>
+									<option value="5">5 Km</option>
+									<option value="10">10 Km</option>
+									<option value="25">25 Km</option>
+									<option value="50">50 Km</option>
+								</select>
+							</div>
+							<div class="col-sm-2 ">
+								<div class="six-wrap">
+									<button class="btn btn-search " type="submit">Rechercher</button>
+									<a class="link-dark fw-bold" data-bs-toggle="collapse"
+										href="#advanced-search-content" aria-expanded="false">Recherche
+										avancée</a>
+								</div>
+							</div>
+						</div>
+						<div class="collapse" id="advanced-search-content">
+							<hr class="my-4">
+							<div class="container-fluid" style="margin: 0;">
+								<div class="row gx-5"
+									style="display: flex; align-items: stretch;">
+									<div class="col" style="display: flex; flex-direction: column;">
+										<div class="p-3">
+											<h6 class="heading-small text-dark mb-4">Horaires</h6>
+											<p class="text-start">Date de début</p>
+											<input type="date" id="start_date"
+												class="form-control form-control-alternative"
+												min="2023-01-01"   >
+											<p class="pt-4 text-start">Heure de début</p>
+											<input type="time" id="start_hours" 
+												class="form-control form-control-alternative">
+										</div>
+									</div>
+									<div class="col">
+										<div class="p-3">
+											<h6 class="heading-small text-dark mb-4">Informations</h6>
+										</div>
+										<div class="p-5">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" th:field="*{information}"
+													name="exampleRadios" id="priceboth" value="" checked>
+												<label class="form-check-label" for="priceboth">Gratuit
+													et payant</label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" th:field="*{information}"
+													name="exampleRadios" id="pricefree" value="gratuit">
+												<label class="form-check-label" for="pricefree">Uniquement
+													gratuit</label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" th:field="*{information}"
+													name="exampleRadios" id="pricepay" value="payant">
+												<label class="form-check-label" for="pricepay">Uniquement
+													payant</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="p-3">
+											<h6 class="heading-small text-dark mb-4">Accessibilité</h6>
+											<div class="pt-5 px-3">
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="pi"
+														id="test4" th:field="*{accessibility}">
+													<p class="form-check-label text-start">Handicap
+														psychique</p>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="hi"
+														id="test3" th:field="*{accessibility}">
+													<p class="form-check-label text-start">Handicap auditif</p>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="mi"
+														id="test1" th:field="*{accessibility}">
+													<p class="form-check-label text-start">Handicap moteur</p>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="vi"
+														id="test2" th:field="*{accessibility}">
+													<p class="form-check-label text-start">Handicap visuel</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
