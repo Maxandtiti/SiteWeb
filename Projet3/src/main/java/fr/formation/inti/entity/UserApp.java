@@ -1,42 +1,45 @@
 package fr.formation.inti.entity;
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-
-
-
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class UserApp implements java.io.Serializable {
 
 	
-	
-	public Integer idusers;
-	public String nickname;
-	public String email;
-	public String password;
-	public String firstName;
-	public String lastName;
-	public String adress;
-	public String city;
-	public Integer zipcode;
-	public String role;
-	
+
+	private Integer idusers;
+	private String nickname;
+	@NotNull
+    @NotEmpty
+	private String email;
+	@NotNull
+    @NotEmpty
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String adress;
+	private String city;
+	private Integer zipcode;
+	private String role;
+	private String encrytedPassword;
+	private boolean enabled;
+
 	
 	public UserApp() {
 	}
-	
-
-	
 
 	public UserApp(Integer idusers, String nickname, String email, String firstName, String lastName,
 			String adress, String city, Integer zipcode) {
@@ -50,26 +53,26 @@ public class UserApp implements java.io.Serializable {
 		this.zipcode = zipcode;
 	}
 
-
-	public UserApp(Integer idusers, String nickname, String email, String password, String firstName, String lastName,
-			String adress, String city, Integer zipcode, String role) {
-		this.idusers = idusers;
-		this.nickname = nickname;
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.adress = adress;
-		this.city = city;
-		this.zipcode = zipcode;
-		this.role = role;
-	}
+	public String getEncrytedPassword() {
+        return encrytedPassword;
+    }
 
 
+    public void setEncrytedPassword(String encrytedPassword) {
+        this.encrytedPassword = encrytedPassword;
+    }
+	
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "idusers", unique = true, nullable = false)
 	public Integer getidusers() {
 		return this.idusers;
