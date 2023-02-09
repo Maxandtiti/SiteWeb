@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 public class UserApp implements java.io.Serializable {
 
 	
+<<<<<<< HEAD
 
 	private Integer idusers;
 	private String nickname;
@@ -37,10 +38,29 @@ public class UserApp implements java.io.Serializable {
 	private String encrytedPassword;
 	private boolean enabled;
 
+=======
+	
+	public Integer idusers;
+	public String nickname;
+	public String email;
+	public String password;
+	public String firstName;
+	public String lastName;
+	public String adress;
+	public String city;
+	public Integer zipcode;
+	public String role;
+	
+>>>>>>> refs/remotes/origin/Maxime
 	
 	public UserApp() {
 	}
 
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> refs/remotes/origin/Maxime
 	public UserApp(Integer idusers, String nickname, String email, String firstName, String lastName,
 			String adress, String city, Integer zipcode) {
 		this.idusers = idusers;
@@ -57,6 +77,7 @@ public class UserApp implements java.io.Serializable {
         return encrytedPassword;
     }
 
+<<<<<<< HEAD
 
     public void setEncrytedPassword(String encrytedPassword) {
         this.encrytedPassword = encrytedPassword;
@@ -65,6 +86,21 @@ public class UserApp implements java.io.Serializable {
     public boolean isEnabled() {
         return enabled;
     }
+=======
+	public UserApp(Integer idusers, String nickname, String email, String password, String firstName, String lastName,
+			String adress, String city, Integer zipcode, String role) {
+		this.idusers = idusers;
+		this.nickname = nickname;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.adress = adress;
+		this.city = city;
+		this.zipcode = zipcode;
+		this.role = role;
+	}
+>>>>>>> refs/remotes/origin/Maxime
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
