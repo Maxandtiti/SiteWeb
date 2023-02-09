@@ -114,7 +114,7 @@ public class UserAccountController {
 
 			SimpleMailMessage mailMessage = new SimpleMailMessage();
 			mailMessage.setTo(user.getEmail());
-			mailMessage.setSubject("Complete Registration!");
+			mailMessage.setSubject("Confirmer votre inscription");
 			mailMessage.setFrom("eventwebapp212@gmail.com");
 			mailMessage.setText("Pour confirmer votre compte, cliquez ici : "
 					+ "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
@@ -173,7 +173,7 @@ public class UserAccountController {
 			// create the email
 			SimpleMailMessage mailMessage = new SimpleMailMessage();
 			mailMessage.setTo(existingUser.getEmail());
-			mailMessage.setSubject("Complete Password Reset!");
+			mailMessage.setSubject("Réinitialisation du mot de passe");
 			mailMessage.setFrom("eventwebapp212@gmail.com");
 			mailMessage
 					.setText("Pour terminer la procédure de réinitialisation du mot de passe, veuillez cliquer ici : "

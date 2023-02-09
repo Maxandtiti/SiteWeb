@@ -58,19 +58,7 @@
 	<div class="main-content">
 		<div class="container mt-7 pt-5 pb-5 ">
 
-			<!-- Connexion -->
-			<div class="row">
-				<div class="col-xl-7 m-auto order-xl-1">
-					<div class="card bg-light shadow">
-						<div class="card-header border-0">
-							<div class="row align-items-center">
-								<div class="col-8">
-									<h3 class="mb-0 text-dark">Connexion</h3>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
 
 
 				<div class="card-group">
@@ -80,25 +68,7 @@
 							<div th:if="${param.error}">Mail ou mot de passe incorrect</div>
 							<div th:if="${param.logout}">Vous avez été déconnecté</div>
 							<form th:action="@{/login_check}" method="post">
-								<!-- <div>
-											<label>
-												User Name :
-												<input type="text" name="email" />
-											</label>
-										</div>
-										<div>
-											<label>
-												Password:
-												<input type="password" name="password" />
-											</label>
-										</div>
-										<div>
-											<input type="submit" value="Sign In" />
-										</div>
-
- -->
-
-
+			
 
 								<div class="row">
 									<div class="col">

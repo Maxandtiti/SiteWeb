@@ -6,6 +6,11 @@
 			<a class="navbar-brand me-2 mb-1">
 				<img src="logo-site.png" height="40" alt="logo" loading="lazy">
 			</a>
+
+			<div class="nav-item text-white"> Bonjour: 
+				<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+			</div>
+			&nbsp;&nbsp;&nbsp;
 			<div class="title text-center text-white ">NOMDUSITEWEB</div>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -43,7 +48,7 @@
 						</a>
 					</li>
 					<li class="nav-item" id="register-link">
-						<a class="nav-link text-white" href="#">
+						<a class="nav-link text-white" href="/register">
 							<span class="d-grid gap-2 d-lg-inline-block">S'inscrire</span>
 						</a>
 					</li>
