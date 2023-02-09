@@ -60,23 +60,37 @@ fetch(`https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-public
 .then((json) => {
 
     document.getElementById("titre").innerHTML = json.record.fields.title_fr;
-    document.getElementById("description").innerHTML = json.record.fields.longdescription_fr
-    document.getElementById("keywords").innerHTML = json.record.fields.keywords_fr
-    document.getElementById("daterange").innerHTML = json.record.fields.daterange_fr
-    const conditions = json.record.fields.conditions_fr
-    document.getElementById("conditions").innerHTML = conditions
+    document.getElementById("description").innerHTML = json.record.fields.longdescription_fr;
+  	 const keywords = json.record.fields.keywords_fr;
+    document.getElementById("keywords").innerHTML = keywords;
+    
+    document.getElementById("daterange").innerHTML = json.record.fields.daterange_fr;
+    const conditions = json.record.fields.conditions_fr;
+    document.getElementById("conditions").innerHTML = conditions;
 
 
     
-    console.log(document.getElementById("conditions").innerHTML = json.record.fields.conditions_fr)    
-    
-     if (conditions == null) {
-	      		    document.getElementById("conditions-section").style.display = "none";
-	      		  }
-    
-    
-    document.getElementById("img").src = json.record.fields.image;
+     if (conditions == null) { 
+    	 document.getElementById("conditions-section").style.display = "none";
 
+	    }
+     
+     if (keywords == null) { 
+    	 document.getElementById("keywords-section").style.display = "none";
+	     
+	    }
+     
+    
+    
+   // Image
+    
+   	const img = json.record.fields.image;
+   
+   	document.getElementById("img").src = img
+   	if (img == null) {
+	document.getElementById("imageABS-section").style.display = "block";
+    document.getElementById("image-section").style.display = "none";
+   	}
     
    //  Récupération du tableau dans le json + récupérer le mois
       const timingArray = JSON.parse(json.record.fields.timings);
@@ -197,7 +211,8 @@ ${output.join("")}
 	 	     if (registrationData !== undefined || registrationData !== null) {
 		 	     registration = JSON.parse(registrationData);
 		 	     }
-	 	  
+	 	  	
+	 	     console.log(registration)
 	 	  
 	 	     let link, phone, email;
 	 	   
@@ -415,13 +430,16 @@ ${output.join("")}
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="col">
-                            <img src="" id="img" class="img-fluid" alt="photo_event">
+                        <div class="col" id="image-section">
+                            <img id="img" class="img-fluid text-center" alt="Pas d'image disponible">
+                        </div>
+                        <div class="col text-center" id="imageABS-section" style="display: none">
+                         <strong><span>Pas d'image disponible</span></strong>
                         </div>
                         <div class="pl-lg-4 py-4">
                             <div class="row" id="description">
                             </div>
-                            <strong><span>Mots-clés: &nbsp;</span></strong><span id="keywords"></span>
+                            <strong id="keywords-section"><span>Mots-clés: &nbsp;</span></strong><span id="keywords"></span>
                         </div>
                     </div>
                 </div>

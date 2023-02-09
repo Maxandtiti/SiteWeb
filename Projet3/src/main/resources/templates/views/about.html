@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A propos</title>
+  <link rel="shortcut icon" href="logo-shortcut.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+  <link href="css/avancee.css" rel="stylesheet">
+
+
+</head>
+
+
+<body class="d-flex flex-column min-vh-100">
+
+  
+  
+  
+<div th:include="_header :: _header"></div>
+
+
+
+  <div class="main-content my-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-8 m-auto order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">A propos de nous</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body bg-light">
+             
+                <span class="text-center text-dark">Ce site a été crée par </span><span class="text-center text-dark" id="randomName1">PrénomRAND</span>, <span class="text-center text-dark" id="randomName2">PrénomRAND</span>, <span class="text-center text-dark" id="randomName3">PrénomRAND</span><span class="text-center text-dark"> en reconversion dans l'informatique avec des formations initiales dans les sciences (Biotechnologies, Génie mécanique, Matériaux).
+                A la fin de notre formation de 3 mois nous devions réaliser un site web mettant en avant les compétences acquises.</span>
+                <br>
+                <span class="text-center text-dark">Si vous êtes intéressé par une reconversion en informatique, vous pouvez contacter <a href="https://adaming.fr">Adaming</a>.</span>
+              
+
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div th:include="_footer :: _footer"></div>
+    
+  <script>
+  const names = ["Maxime", "Shaïma", "Karim"];
+  let usedNames = [];
+  
+  for (let i = 1; i <= 3; i++) {
+    let randomIndex = Math.floor(Math.random() * names.length);
+    let randomName = names[randomIndex];
+    
+    while (usedNames.includes(randomName)) {
+      randomIndex = Math.floor(Math.random() * names.length);
+      randomName = names[randomIndex];
+    }
+    
+    usedNames.push(randomName);
+    document.getElementById(`randomName${i}`).innerHTML = randomName;
+  }
+</script>
+</body>
+
+
+</html>

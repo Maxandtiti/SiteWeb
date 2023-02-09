@@ -240,13 +240,7 @@ public class UserAccountController {
 		return modelAndView;
 	}
 
-	@GetMapping(value = "/eventinfo")
-	public String userInfo(Model model, Principal principal) {
-		String userName = principal.getName();
-		System.out.println("User Name: " + userName);
 
-		return "eventinfo";
-	}
 
 	public UserAppRepository getUserRepository() {
 		return userRepository;
