@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "users")
@@ -24,11 +23,11 @@ public class Users {
 	private String firstName;
 
 	private String lastName;
-	
+
 	private String userName;
 
 	private String role;
-	
+
 	private Boolean enabled;
 
 	public Boolean getEnabled() {
@@ -39,7 +38,7 @@ public class Users {
 		this.enabled = enabled;
 	}
 
-	@Column(name="user_name")
+	@Column(name = "user_name")
 	public String getUserName() {
 		return userName;
 	}
@@ -48,7 +47,7 @@ public class Users {
 		this.userName = userName;
 	}
 
-	@Column(name="role")
+	@Column(name = "role")
 	public String getRole() {
 		return role;
 	}
@@ -57,7 +56,7 @@ public class Users {
 		this.role = role;
 	}
 
-	@Column(name="iduser")
+	@Column(name = "iduser")
 	public Integer getId() {
 		return id;
 	}
@@ -66,7 +65,7 @@ public class Users {
 		this.id = id;
 	}
 
-	@Column(name="email")
+	@Column(name = "email")
 	public String getEmail() {
 		return email;
 	}
@@ -75,7 +74,7 @@ public class Users {
 		this.email = email;
 	}
 
-	@Column(name="password")
+	@Column(name = "password")
 	public String getPassword() {
 		return password;
 	}
@@ -84,7 +83,7 @@ public class Users {
 		this.password = password;
 	}
 
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -93,7 +92,7 @@ public class Users {
 		this.firstName = firstName;
 	}
 
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	public String getLastName() {
 		return lastName;
 	}
@@ -108,9 +107,4 @@ public class Users {
 				+ ", lastName=" + lastName + ", role=" + role + "]";
 	}
 
-
-
-	
-
-	
 }

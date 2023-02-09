@@ -12,7 +12,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UsersRepository userRepo;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Users user = userRepo.findByEmail(username);
@@ -21,9 +21,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 		return new CustomUserDetails(user);
 	}
-	
-	public void createUser(UserDetails user) { 
-	      userRepo.save((Users) user); 
-	   } 
+
+	public void createUser(UserDetails user) {
+		userRepo.save((Users) user);
+	}
 
 }

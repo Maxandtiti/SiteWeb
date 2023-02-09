@@ -1,7 +1,5 @@
 package fr.formation.inti.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +16,7 @@ import fr.formation.inti.service.CustomUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private DataSource dataSource;
+
 	
 	@Autowired
 	MyDBAuthenticationService myDBAauthenticationService;
@@ -42,22 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		System.out.println("WebSecurityConfig_BCryptPasswordEncoder");
         return new BCryptPasswordEncoder();
     }
-
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//			.antMatchers("/login").authenticated()
-//			.anyRequest().permitAll()
-//			.and()
-//			.formLogin()
-//				.usernameParameter("email")
-//				.defaultSuccessUrl("/login")
-//				.permitAll()
-//			.and()
-//			.logout().logoutSuccessUrl("/").permitAll();
-//	}
-	
-	
+		
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		

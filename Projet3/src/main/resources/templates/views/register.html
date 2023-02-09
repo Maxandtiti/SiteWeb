@@ -32,37 +32,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-	<header class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-
-		<!-- En tête -->
-
-		<div
-			class="container-fluid justify-content-center justify-content-md-between">
-			<div class="d-flex my-2 my-sm-0">
-				<a class="navbar-brand me-2 mb-1 d-flex justify-content-center ">
-					<img src="logo-site.png" height="40" alt="logo" loading="lazy">
-				</a>
-			</div>
-			<ul class="navbar-nav flex-row ">
-				<li class="nav-item me-3 me-lg-0">
-					<a class="nav-link text-center text-white" href="index.html">
-						<span class="">NOMDUSITEWEB</span>
-					</a>
-			</ul>
-			<ul class="navbar-nav flex-row">
-				<li class="nav-item me-3 me-lg-0">
-					<a class="nav-link text-white" href="#">
-						<span class="d-grid gap-2 d-lg-inline-block">Connexion</span>
-					</a>
-				</li>
-				<li class="nav-item me-3 me-lg-0">
-					<a class="nav-link text-white" href="#">
-						<span class="d-grid gap-2 d-lg-inline-block">S'inscrire</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</header>
+	<div th:include="_header :: _header"></div>
 
 	<div class="main-content">
 		<div class="container mt-7 pt-5 pb-5">
@@ -95,63 +65,64 @@
 												class="form-control" required />
 										</div>
 									</div>
+								</div>
 
-									<br>
+								<br>
 
-									<div class="form-group row">
-										<label class="col-4 col-form-label">Prenom </label>
-										<div class="col-8">
-											<input type="text" th:field="*{firstName}"
-												class="form-control" required />
-										</div>
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Prenom </label>
+									<div class="col-8">
+										<input type="text" th:field="*{firstName}"
+											class="form-control" required />
 									</div>
+								</div>
 
-									<br>
+								<br>
 
-									<div class="form-group row">
-										<label class="col-4 col-form-label">Nom </label>
-										<div class="col-8">
-											<input type="text" th:field="*{lastName}"
-												class="form-control" required />
-										</div>
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Nom </label>
+									<div class="col-8">
+										<input type="text" th:field="*{lastName}" class="form-control"
+											required />
 									</div>
+								</div>
 
-									<br>
+								<br>
 
 
-									<div class="form-group row">
-										<label class="col-4 col-form-label">E-mail: </label>
-										<div class="col-8">
-											<input type="email" th:field="*{email}" class="form-control"
-												required />
-										</div>
+								<div class="form-group row">
+									<label class="col-4 col-form-label">E-mail: </label>
+									<div class="col-8">
+										<input type="email" th:field="*{email}" class="form-control"
+											required />
 									</div>
+								</div>
 
 
-									<br>
+								<br>
 
-									<div class="form-group row">
-										<label class="col-4 col-form-label">Mot de passe </label>
-										<div class="col-8">
-											<input id="password" type="password" th:field="*{password}"
-												class="form-control" required minlength="6" maxlength="10" />
-										</div>
+								<div class="form-group row">
+									<label class="col-4 col-form-label">Mot de passe </label>
+									<div class="col-8">
+										<input id="password" type="password" th:field="*{password}"
+											class="form-control" required minlength="6" maxlength="10" />
 									</div>
+								</div>
 
-									<br>
+								<br>
 
-									<div class="form-group row">
-										<label class="col-4 col-form-label" for="input-rmdp">Répéter
-											le mot de passe </label>
-										<div class="col-8">
-											<input type="password" id="repeatpassword"
-												class="form-control" required
-												placeholder="Répéter le mot de passe" maxlength="45" />
-										</div>
+								<div class="form-group row">
+									<label class="col-4 col-form-label" for="input-rmdp">Répéter
+										le mot de passe </label>
+									<div class="col-8">
+										<input type="password" id="repeatpassword"
+											class="form-control" required
+											placeholder="Répéter le mot de passe" maxlength="45" />
 									</div>
+								</div>
 
 
-									<!-- <div class="row">
+								<!-- <div class="row">
 										<div class="col-4">
 											<div class="form-group focused">
 												<label class="form-control-label" for="input-rmdp">Répéter
@@ -163,22 +134,22 @@
 										</div>
 									</div> -->
 
-									<br>
+								<br>
 
-									<div class="d-flex justify-content-around">
-										<div class="col-lg-4 text-right six-wrap">
-											<input class="btn btn-dark btn-lg btn-block"
-												style="background: #b78a62" type="submit"
-												value="Créer un compte" />
-										</div>
+								<div class="d-flex justify-content-around">
+									<div class="col-lg-4 text-right six-wrap">
+										<input class="btn btn-dark btn-lg btn-block"
+											style="background: #b78a62" type="submit"
+											value="Créer un compte" />
 									</div>
-									<div class="row gy-2">
-										<p class="text-justify text-dark">
-											<p class="text-justify text-dark">En créant un compte vous
-											acceptez les Conditions d'Utilisation ainsi que la Politique
-											de confidentialité.</p>
-									</div>
-							
+								</div>
+								<div class="row gy-2">
+									<p class="text-justify text-dark">
+									<p class="text-justify text-dark">En créant un compte vous
+										acceptez les Conditions d'Utilisation ainsi que la Politique
+										de confidentialité.</p>
+								</div>
+
 							</form>
 							<!-- <form>
                                 <div class="row">
@@ -255,9 +226,10 @@
                                         d'Utilisation ainsi que la Politique de confidentialité.
                                     </p>
                                 </div>
-                            </form> --></div>
+                            </form> -->
+						</div>
 
-															</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -265,19 +237,7 @@
 
 
 	<!-- Pied de page -->
-	<footer class="mt-auto bg-dark text-center text-light">
-		<div class="container">
-			<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-				<li class="nav-item">
-					<a href="about.html" class="nav-link px-2 text-white">A propos</a>
-				</li>
-				<li class="nav-item">
-					<a href="contacts.html" class="nav-link px-2 text-white">Contact</a>
-				</li>
-			</ul>
-			<p class="text-center text-white">Copyright 2023 ®</p>
-		</div>
-	</footer>
+	<div th:include="_footer :: _footer"></div>
 </body>
 
 <script>

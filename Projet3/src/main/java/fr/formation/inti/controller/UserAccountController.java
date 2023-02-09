@@ -37,41 +37,39 @@ public class UserAccountController {
 	private MyEventsRepository MyEventsRepo;
 
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-	
-	
+
 	// Login
-		@RequestMapping(value = "/login", method = RequestMethod.GET)
-		public ModelAndView displayLogin(ModelAndView modelAndView, Users user) {
-			modelAndView.addObject("user", user);
-			modelAndView.setViewName("logIn");
-			return modelAndView;
-		}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView displayLogin(ModelAndView modelAndView, Users user) {
+		modelAndView.addObject("user", user);
+		modelAndView.setViewName("logIn");
+		return modelAndView;
+	}
 
-		@RequestMapping(value = "/login", method = RequestMethod.POST)
-		public ModelAndView loginUser(ModelAndView modelAndView, Users user) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView loginUser(ModelAndView modelAndView, Users user) {
 
-			Users existingUser = userRepository.findByEmail(user.getEmail());
-			if (existingUser != null) {
-				// use encoder.matches to compare raw password with encrypted password
+		Users existingUser = userRepository.findByEmail(user.getEmail());
+		if (existingUser != null) {
+			// use encoder.matches to compare raw password with encrypted password
 
-				if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
-					// successfully logged in
-					modelAndView.addObject("message", "Connexion réussie !");
-					modelAndView.setViewName("eventinfo");
-				} else {
-					// wrong password
-					modelAndView.addObject("message", "Le mot de passe est incorrect. Essayez à nouveau.");
-					modelAndView.setViewName("logIn");
-				}
+			if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
+				// successfully logged in
+				modelAndView.addObject("message", "Connexion réussie !");
+				modelAndView.setViewName("eventinfo");
 			} else {
-				modelAndView.addObject("message", "L'email fourni n'existe pas !");
+				// wrong password
+				modelAndView.addObject("message", "Le mot de passe est incorrect. Essayez à nouveau.");
 				modelAndView.setViewName("logIn");
-
 			}
+		} else {
+			modelAndView.addObject("message", "L'email fourni n'existe pas !");
+			modelAndView.setViewName("logIn");
 
-			return modelAndView;
 		}
-	
+
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/createEvent", method = RequestMethod.POST)
 	public String newEvent(MyEvents myEvents) {
@@ -149,8 +147,6 @@ public class UserAccountController {
 		return modelAndView;
 	}
 
-	
-
 	/**
 	 * Display the forgot password page and form
 	 */
@@ -179,8 +175,9 @@ public class UserAccountController {
 			mailMessage.setTo(existingUser.getEmail());
 			mailMessage.setSubject("Complete Password Reset!");
 			mailMessage.setFrom("eventwebapp212@gmail.com");
-			mailMessage.setText("Pour terminer la procédure de réinitialisation du mot de passe, veuillez cliquer ici : "
-					+ "http://localhost:8080/confirm-reset?token=" + confirmationToken.getConfirmationToken());
+			mailMessage
+					.setText("Pour terminer la procédure de réinitialisation du mot de passe, veuillez cliquer ici : "
+							+ "http://localhost:8080/confirm-reset?token=" + confirmationToken.getConfirmationToken());
 
 			emailSenderService.sendEmail(mailMessage);
 
@@ -274,5 +271,4 @@ public class UserAccountController {
 		this.emailSenderService = emailSenderService;
 	}
 
-	
 }

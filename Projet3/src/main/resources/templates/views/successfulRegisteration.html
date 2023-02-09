@@ -1,33 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Registration Success</title>
-</head>
-<body>
-	<center>
-		<span th:text="'Un email de vérification a été envoyé à : ' + ${email}"></span>
-	</center>
-	<div class="row">
-		<div class="col">
-			<p>Vous serez redirigé dans</p>
-		</div>
-		<div class="col">
-			<div id="counter">5</div>
-		</div>
-		<script>
-			setInterval(function() {
-				var div = document.querySelector("#counter");
-				var count = div.textContent * 1 - 1;
-				div.textContent = count;
-				if (count <= 0) {
-					window.location.replace("/");
-				}
-			}, 1000);
-		</script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
@@ -75,25 +45,21 @@
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 <link href="css/moncompte.css" rel="stylesheet">
-
-	<head>
-		<title>Registration Success</title>
-	</head>
-	<body>
-	<!-- 	<center>
-      <span class="text-center" th:text="${message}"></span> <br/><br/><br/>
-      <a href="/login">Login</a> -->
-      <div class="card border-0">
-								<div class="card-body">
-									<div class="row">
-										<div class="form-group text-center">
-										<span th:text="'Un email de vérification a été envoyé à : ' + ${email}"></span>
-										<!-- <br>
-											<a class="btn btn-search btn-dark "
-												style="background: #b78a62" href="/login" role="button">
-												<i class="btn-search"></i>
-												Se connecter
-											</a> -->
-		<!-- </center> -->
-	</body>
+<head>
+<title>Registration Success</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:include="_header :: _header"></div>
+	<div class="card border-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="form-group text-center">
+					<span
+						th:text="'Un email de vérification a été envoyé à : ' + ${email}"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="_footer :: _footer"></div>
+</body>
 </html>

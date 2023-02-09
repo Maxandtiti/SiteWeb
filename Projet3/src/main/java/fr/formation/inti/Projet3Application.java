@@ -5,11 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-
-<<<<<<< HEAD
-=======
-@SpringBootApplication
->>>>>>> refs/remotes/origin/Maxime
 public class Projet3Application {
 
 	public static void main(String[] args) {

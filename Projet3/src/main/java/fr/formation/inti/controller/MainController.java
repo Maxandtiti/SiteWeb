@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import fr.formation.inti.entity.Formulaire;
 
 @Controller
-//@RestController
 public class MainController {
 
 	

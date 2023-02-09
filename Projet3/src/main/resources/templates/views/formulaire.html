@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-
+<div th:include="_header :: _header"></div>
 
     <div class="main-content">
         <div class=" container-fluid mt-7 pt-5 pb-5">
@@ -622,7 +622,7 @@
         </div>
     </div>
 
-
+<div th:include="_footer :: _footer"></div>
 </body>
 
 </html>
