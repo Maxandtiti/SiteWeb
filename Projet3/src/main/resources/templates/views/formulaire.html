@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+    <script>
+
+        /* This method will add a new row */
+        function addNewRow() {
+            var table = document.getElementById("prix-table");
+            var rowCount = table.rows.length;
+            var cellCount = table.rows[0].cells.length;
+            var row = table.insertRow(rowCount);
+            for (var i = 0; i < cellCount; i++) {
+                var cell = row.insertCell(i);
+                if (i < cellCount - 1) {
+                    cell.innerHTML = '<input type="text" class="form-control" />';
+                } else {
+                    cell.innerHTML = '<input class="btn btn-danger" '
+                        + ' type="button" value="supprimer" onclick="deleteRow(this)" />';
+                }
+            }
+        }
+
+        /* This method will delete a row */
+        function deleteRow(ele) {
+            var table = document.getElementById('prix-table');
+            var rowCount = table.rows.length;
+            if (rowCount <= 1) {
+                alert("There is no row available to delete!");
+                return;
+            }
+            if (ele) {
+                //delete specific row
+                ele.parentNode.parentNode.remove();
+            } else {
+                //delete last row
+                table.deleteRow(rowCount - 1);
+            }
+        }
+    </script>
+
+ <link href="../css/main.css" rel="stylesheet">
+ <link href="../css/avancee.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+    <title>Création d'un événement</title>
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<div th:include="_header :: _header"></div>
+
+    <div class="main-content">
+        <div class=" container-fluid mt-7 pt-5 pb-5">
+
+            <!-- Creation d'un événement -->
+            <div class="row">
+                <div class="col-xl-7 m-auto order-xl-1">
+                    <div class="card bg-light shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0 text-dark">Création d'un événement</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            <div class="card">
+
+                                <!-- Votre événement-->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-event">Nom de
+                                                    l'événement</label>
+                                                <input type="text" id="input-event"
+                                                    class="form-control form-control-alternative" placeholder=""
+                                                    maxlength="45">
+
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Parcourir image-->
+                                        <div class="col">
+                                            <div class="form-group focused">
+                                                <!-- <label for="formFileMultiple" class="form-label">Image</label>-->
+
+                                                <div class="mb-3">
+                                                    <label class="form-control-label" for="input-img">Image</label>
+                                                    <input class="form-control" type="file" id="input-img" multiple>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- Description-->
+                                    <div class="row">
+                                        <div class="col">
+
+                                            <div class="form-group focused">
+                                                <label class="form-control-label"
+                                                    for="input-first-name">Description</label>
+                                                <textarea class="form-control" rows="5" placeholder=" ........"
+                                                    id="input-first-name" maxlength="600"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- Choissisez votre catégorie-->
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <br>
+                                            <div class="dropdown">
+                                                <button class="btn btn btn-light dropdown-toggle"
+                                                    style="background-color: grey;" type="button"
+                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    Choissisez votre catégorie
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#">Concert</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#">Musée</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="#">Orchestre</a>
+                                                    </li>
+                                                </ul>
+
+
+
+                                                <!-- Adresse personnalisé-->
+                                                <br>
+                                                <div class="col">
+                                                    <br>
+                                                    <div class="form-group focused">
+
+                                                        <label class="form-control-label" for="input-url">Adresse
+                                                            personnalisé</label>
+                                                        <br>
+                                                        <input type="text" id="input-url"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="URL">
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- Accessibilité-->
+
+                                    <h6 class="heading-small text-muted mb-4"> Accessibilité </h6>
+
+                                    <div class="pl-lg-4">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="test2">
+                                                    <label class="form-check-label">Handicap
+                                                        auditif</label>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="test3">
+                                                    <label class="form-check-label">Handicap
+                                                        psychique</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="test4">
+                                                    <label class="form-check-label">Handicap
+                                                        moteur</label>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="test5">
+                                                    <label class="form-check-label">Handicap
+                                                        visuel</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <!-- Localisation-->
+                                    <div class="row">
+                                        <div class="col">
+
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-adress">Adresse</label>
+                                                <input type="text" id="input-adress"
+                                                    class="form-control form-control-alternative" placeholder="Adresse"
+                                                    maxlength="150">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-city">Ville</label>
+                                                    <input type="text" id="input-city"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Ville" maxlength="60">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-country">Code
+                                                        Postal</label>
+                                                    <input type="number" id="input-country"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Code postal" maxlength="6">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-pays">Pays</label>
+                                                    <input type="text" id="input-pays"
+                                                        class="form-control form-control-alternative" placeholder="Pays"
+                                                        maxlength="80">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p> </p>
+
+                                        <!-- Date de début-->
+                                        <div class="row">
+                                            <div class="col">
+                                                <br>
+                                                <!-- Start Input Date , Start Time and End Time -->
+                                                <div class="row">
+                                                    <!-- Start Input Date -->
+                                                    <div class=" col-md-4">
+                                                        <label for="inputDateDebut">Date de début</label>
+                                                        <input type="date" class="form-control" id="inputDateDebut"
+                                                            name="date" required>
+                                                    </div>
+                                                    <!-- End Input Date -->
+
+                                                    <!-- Start Input Start Time -->
+                                                    <div class=" col" style="text-align:center;">
+
+                                                        <label>Horaire de début </label>
+                                                        <div
+                                                            class="d-flex flex-row justify-content-between align-items-center">
+                                                            <select class="form-control" id="inputStartTimeHour"
+                                                                name="startHour" required>
+                                                                <option value="" disabled selected>
+                                                                    Heure
+                                                                </option>
+                                                                <option value="09">
+                                                                    00
+                                                                </option>
+                                                                <option value="08">
+                                                                    01
+                                                                </option>
+                                                                <option value="09">
+                                                                    02
+                                                                </option>
+                                                                <option value="09">
+                                                                    03
+                                                                </option>
+                                                                <option value="09">
+                                                                    04
+                                                                </option>
+                                                                <option value="09">
+                                                                    05
+                                                                </option>
+                                                                <option value="09">
+                                                                    06
+                                                                </option>
+                                                                <option value="09">
+                                                                    07
+                                                                </option>
+                                                                <option value="09">
+                                                                    08
+                                                                </option>
+                                                                <option value="09">
+                                                                    09
+                                                                </option>
+                                                                <option value="10">
+                                                                    10
+                                                                </option>
+                                                                <option value="11">
+                                                                    11
+                                                                </option>
+                                                                <option value="12">
+                                                                    12
+                                                                </option>
+                                                                <option value="13">
+                                                                    13
+                                                                </option>
+                                                                <option value="14">
+                                                                    14
+                                                                </option>
+                                                                <option value="15">
+                                                                    15
+                                                                </option>
+                                                                <option value="15">
+                                                                    16
+                                                                </option>
+                                                                <option value="15">
+                                                                    17
+                                                                </option>
+                                                                <option value="15">
+                                                                    18
+                                                                </option>
+                                                                <option value="15">
+                                                                    19
+                                                                </option>
+                                                                <option value="15">
+                                                                    20
+                                                                </option>
+                                                                <option value="15">
+                                                                    21
+                                                                </option>
+                                                                <option value="15">
+                                                                    22
+                                                                </option>
+                                                                <option value="15">
+                                                                    23
+                                                                </option>
+                                                            </select>
+
+                                                            <div class="pl-1 pr-2">
+                                                                :
+                                                            </div>
+                                                            <select class="form-control" id="inputStartTimeMinute"
+                                                                name="startMinute" required>
+
+                                                                <option value="" disabled selected>
+                                                                    Min
+                                                                </option>
+                                                                <option value="00">
+                                                                    00
+                                                                </option>
+                                                                <option value="00">
+                                                                    15
+                                                                </option>
+                                                                <option value="00">
+                                                                    30
+                                                                </option>
+                                                                <option value="00">
+                                                                    45
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+
+                                        <!-- Date de fin-->
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <!-- End Input Start Time -->
+                                                <br>
+                                                <!-- Start Input Date , Start Time and End Time -->
+                                                <div class="row">
+                                                    <!-- Start Input Date -->
+                                                    <div class="col-md-4">
+                                                        <label for="inputDateFin">Date de fin</label>
+                                                        <input type="date" class="form-control" id="inputDateFin"
+                                                            name="date" required>
+                                                    </div>
+
+                                                    <!-- End Input Date -->
+                                                    <!-- Start Input End Time -->
+                                                    <div class="col" style="text-align:center;">
+                                                        <label>Horaire de fin</label>
+                                                        <div
+                                                            class="d-flex flex-row justify-content-between align-items-center">
+                                                            <select class="form-control mr-1" id="inputEndTimeHour"
+                                                                name="endHour" required>
+                                                                <option value="" disabled selected>
+                                                                    Heures
+                                                                </option>
+                                                                <option value="09">
+                                                                    00
+                                                                </option>
+                                                                <option value="08">
+                                                                    01
+                                                                </option>
+                                                                <option value="09">
+                                                                    02
+                                                                </option>
+                                                                <option value="09">
+                                                                    03
+                                                                </option>
+                                                                <option value="09">
+                                                                    04
+                                                                </option>
+                                                                <option value="09">
+                                                                    05
+                                                                </option>
+                                                                <option value="09">
+                                                                    06
+                                                                </option>
+                                                                <option value="09">
+                                                                    07
+                                                                </option>
+                                                                <option value="09">
+                                                                    08
+                                                                </option>
+                                                                <option value="09">
+                                                                    09
+                                                                </option>
+                                                                <option value="10">
+                                                                    10
+                                                                </option>
+                                                                <option value="11">
+                                                                    11
+                                                                </option>
+                                                                <option value="12">
+                                                                    12
+                                                                </option>
+                                                                <option value="13">
+                                                                    13
+                                                                </option>
+                                                                <option value="14">
+                                                                    14
+                                                                </option>
+                                                                <option value="15">
+                                                                    15
+                                                                </option>
+                                                                <option value="15">
+                                                                    16
+                                                                </option>
+                                                                <option value="15">
+                                                                    17
+                                                                </option>
+                                                                <option value="15">
+                                                                    18
+                                                                </option>
+                                                                <option value="15">
+                                                                    19
+                                                                </option>
+                                                                <option value="15">
+                                                                    20
+                                                                </option>
+                                                                <option value="15">
+                                                                    21
+                                                                </option>
+                                                                <option value="15">
+                                                                    22
+                                                                </option>
+                                                                <option value="15">
+                                                                    23
+                                                                </option>
+                                                            </select>
+
+                                                            <div class="pl-1 pr-2">
+                                                                :
+                                                            </div>
+                                                            <select class="form-control" id="inputEndTimeMinute"
+                                                                name="endMinute" required>
+                                                                <option value="" disabled selected>
+                                                                    Min
+                                                                </option>
+                                                                <option value="00">
+                                                                    00
+                                                                </option>
+                                                                <option value="00">
+                                                                    15
+                                                                </option>
+                                                                <option value="00">
+                                                                    30
+                                                                </option>
+                                                                <option value="00">
+                                                                    45
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Input End Time -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Input Date , Start Time and End Time -->
+
+
+                                    <!-- Tarif-->
+
+                                    <!-- <h3 class="mb-0 text-dark">Tarif </h3>-->
+                                    <!-- 
+                                        <div class="row">
+                                            <div class="col">
+
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-TTC">Prix
+                                                        TTC</label>
+                                                    <input type="text" id="input-TTC"
+                                                        class="form-control form-control-alternative" placeholder="">
+                                                </div>
+                                            </div>
+-->
+                                    <!-- tarif pleins pour tous aldulte enfant senior-->
+                                    <!--   <div class="col">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-TTC">Type
+                                                </label>
+                                                <input type="text" id="input-TTC"
+                                                    class="form-control form-control-alternative" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    -->
+
+
+                                    <!--Ajouter/supprimer TARIFS-->
+                                    <br>
+                                    <div class="row">
+
+                                        <div class="col text-center">
+                                            <br>
+                                            <table id="prix-table" class="table table-bordered table-striped">
+                                                <tr>
+                                                    <th>Prix TTC</th>
+                                                    <th>Tarifs(adultes, enfants, seniors, unique)</th>
+                                                    <th></th>
+                                                </tr>
+                                            </table>
+                                            <button onclick="addNewRow()" class="btn"
+                                                style="background: grey">Ajouter</button>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Gratuit checkbox-->
+                                    <div class="row">
+                                        <div class="col">
+                                            <p></p>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" name="gratuit"
+                                                        id="gratuit" value="checkedValue" checked>
+                                                    Gratuit
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Annuler ou enregistrer -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group text-right">
+                                        <a class="btn btn-search btn-dark btn-block" style="background: #b78a62"
+                                            href="#!" role="button">
+                                            <i class="btn-search"></i>Annuler
+                                        </a>
+                                        <a class="btn btn-search btn-dark btn-block" style="background: #b78a62"
+                                            href="#!" role="button">
+                                            <i class="btn-search"></i>Enregistrer
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div th:include="_footer :: _footer"></div>
+</body>
+
+</html>

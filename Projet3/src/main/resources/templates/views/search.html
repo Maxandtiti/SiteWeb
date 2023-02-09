@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+	integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<!--Bootstrap icon-->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/styles.css" />
+
+<link href="css/main.css" rel="stylesheet">
+<link href="css/avancee.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient d-flex flex-column min-vh-100">
+
+	<div th:include="_header :: _header"></div>
+	<div th:include="_search :: _search"></div>
+
+	<!-- card-->
+	<p th:text="'id: ' + ${formulaire.keywords}" />
+	<p th:text="'content: ' + ${formulaire.city}" />
+	<p th:text="'information: ' + ${formulaire.information}" />
+	<p th:text="'accessibility ' + ${formulaire.accessibility}" />
+	<div class="container-fluid mx-auto">
+		<div id="resultat"></div>
+	</div>
+
+
+
+	<div th:include="_footer :: _footer"></div>
+
+</body>
+
+<script th:inline="javascript">
+//recupère les mots clés dans le formulaire
+var keywords = /*[[${formulaire.keywords}]]*/ 'parc';
+
+var wherekey = "longdescription_fr%20LIKE%20%27%25"+keywords+"%25%27%20AND%20";
+
+var nkey ="";
+var nwherekey="";
+var premier = true ;
+//Si pas de mot clé, alors la requête "where=longdescription_fr LIKE 'Keywords'" ne sera pas présente.
+if (!keywords){
+	wherekey = "";
+	//Si l'input contient plusieurs mot.
+}else if (keywords){
+	for (var i = 0; i < keywords.length; i++) {	  
+		  if ((keywords.charAt(i)) == " " && premier == false){
+			  nkey +="%25%27%20OR%20" ;
+			  nkey +="longdescription_fr%20LIKE%20%27%25" ;
+		  }else if ((keywords.charAt(i)) == " " && premier == true){
+			  premier = false
+			  nkey +="%25%27%20OR%20longdescription_fr%20LIKE%20%27%25" ;
+		  }
+		  else{
+			  nkey +=keywords.charAt(i);
+			  nwherekey = "longdescription_fr%20LIKE%20%27%25"+nkey+"%25%27%20AND%20";
+		  }
+		}
+}
+//recupère la ville dans le formulaire
+const city = /*[[${formulaire.city}]]*/ 'Tourcoing';
+const access = /*[[${formulaire.accessibility}]]*/ 'pi';
+const info = /*[[${formulaire.information}]]*/ 'any';
+
+const url_original ="https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-publics-openagenda/records?"
+const where_original ="where="+nwherekey+"location_city%20LIKE%20%27%25"+city+"%25%27%20AND%20lastdate_end%20%3E%20NOW%28%29%20%20AND%20location_countrycode%20LIKE%20%27%25FR%25%27";
+
+
+const url ="https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-publics-openagenda/records?where="
+		
+var where_access ="accessibility%20LIKE%20%27%25"+access+"%25%27%20AND%20";
+if (!access){
+	var where_access ="";
+}
+var where_info ="conditions_fr%20LIKE%20%27%25"+info+"%25%27%20AND%20%20";
+if (!info){
+	var where_info ="";
+
+}else if ("payant" === info){
+	var where_info ="conditions_fr%20LIKE%20%27%25€%25%27%20OR%20%20conditions_fr%20LIKE%20%27%25euro%25%27%20OR%20%20longdescription_fr%20LIKE%20%27%25€%25%27%20OR%20%20longdescription_fr%20LIKE%20%27%25euro%25%27%20AND%20%20";
+}else if ("gratuit" === info){
+	var where_info = "NOT%20longdescription_fr%20LIKE%20%27%25%E2%82%AC%25%27%20&20AND%20";
+}
+const where_keywords = nwherekey;
+const where_city ="location_city%20LIKE%20%27%25"+city+"%25%27%20AND%20";
+
+const where = where_info + where_access + where_keywords + where_city + "lastdate_end%20%3E%20NOW%28%29%20%20AND%20location_countrycode%20LIKE%20%27%25FR%25%27";
+const order_by ="%20&order_by=&limit=10&offset=0&timezone=UTC";
+
+	console.log('where_keywords',where_keywords);
+	console.log('where_city',where_city);
+	console.log('where',where);
+	console.log('url',url+where+order_by);
+	
+		fetch(url+where+order_by)
+			.then((response) => response.json())
+			.then((json) => {
+				let res = `<div class="row row-cols-3 g-3 gy-5 p-5 ">`;
+				json.records.forEach((e, i) => {
+					
+						res += `<div class="col card_size o_detail p-2">
+						<a class="text-dark" style="text-decoration: none" href="/event/${e.record.id}">
+							<div class="card h-100 bg-gradient">
+							<div class="card-header p-2">
+							<h5 class="card-title text-center fw-bold m-0">${e.record.fields.title_fr}</h5>
+							</div>
+							<div class="card_img p-2 ">
+							<img src="${e.record.fields.thumbnail}"
+								alt="thumbnail" class="rounded_5">
+							</div>
+							<div class="card-body overflow-auto sb_1">
+							<p class="card-text ">${e.record.fields.description_fr}</p>
+							</div>
+							<div class="card-footer">
+							<small class="text-muted">${e.record.fields.location_city}: ${e.record.fields.location_name}|${e.record.fields.daterange_fr}</small>
+							</div>
+						</div>
+					</a>
+					</div>`
+				});
+				res +=`</div>`;
+				document.getElementById("resultat").innerHTML = res;
+
+			});
+	</script>
+</html>

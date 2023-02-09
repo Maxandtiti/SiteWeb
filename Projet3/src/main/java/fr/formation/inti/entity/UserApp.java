@@ -26,12 +26,30 @@ public class UserApp implements java.io.Serializable {
 	public String password;
 	public String firstName;
 	public String lastName;
-	public String adress;
+	public String address;
 	public String city;
 	public Integer zipcode;
 	public String role;
 	
+	private Boolean enabled;
 	
+	
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	
+// id = idusers
+// userName = nickname
+// first_name = firstname
+// last_name = lastname
+
+
+	
+
+
+
+
 	public UserApp() {
 	}
 	
@@ -39,33 +57,36 @@ public class UserApp implements java.io.Serializable {
 	
 
 	public UserApp(Integer idusers, String nickname, String email, String firstName, String lastName,
-			String adress, String city, Integer zipcode) {
+			String address, String city, Integer zipcode) {
 		this.idusers = idusers;
 		this.nickname = nickname;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.adress = adress;
+		this.address = address;
 		this.city = city;
 		this.zipcode = zipcode;
 	}
 
 
 	public UserApp(Integer idusers, String nickname, String email, String password, String firstName, String lastName,
-			String adress, String city, Integer zipcode, String role) {
+			String address, String city, Integer zipcode, String role) {
 		this.idusers = idusers;
 		this.nickname = nickname;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.adress = adress;
+		this.address = address;
 		this.city = city;
 		this.zipcode = zipcode;
 		this.role = role;
 	}
 
 
+	
+	
+	
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -79,6 +100,7 @@ public class UserApp implements java.io.Serializable {
 		this.idusers = idusers;
 	}
 	
+
 	@Column(name = "nickname", length = 45, nullable = false)
 	public String getNickname() {
 		return this.nickname;
@@ -137,13 +159,13 @@ public class UserApp implements java.io.Serializable {
 		this.city = city;
 	}
 
-	@Column(name = "adress", length = 200)
-	public String getAdress() {
-		return this.adress;
+	@Column(name = "address", length = 200)
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 

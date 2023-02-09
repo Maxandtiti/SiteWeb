@@ -48,7 +48,7 @@ public class MyAccountController {
 	
 		utilisateur.setfirstName(user.getfirstName());
 		utilisateur.setlastName(user.getlastName());
-		utilisateur.setAdress(user.getAdress());
+		utilisateur.setAddress(user.getAddress());
 		utilisateur.setCity(user.getCity());
 		utilisateur.setZipcode(user.getZipcode());
 		

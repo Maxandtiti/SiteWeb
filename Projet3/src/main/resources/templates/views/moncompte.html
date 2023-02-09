@@ -23,12 +23,13 @@
 
 </head>
 
+	<div th:include="_header :: _header"></div>
+
+
+
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- barre de navigation 23.01.19-21h20 -->
-  <header>
- 
-  </header>
+
 
       			 
 
@@ -101,7 +102,7 @@
                       <div class="form-group focused">
                         <label class="form-control-label">Adresse</label>
                         <input class="form-control form-control-alternative text-dark" placeholder="Adresse"
-                          type="text" th:field="*{adress}" name="adress" disabled>
+                          type="text" th:field="*{address}" name="address" disabled>
                       </div>
                     </div>
                   </div>
@@ -165,13 +166,15 @@
           <button type="button" class="btn btn-secondary" id="cancelbutton" data-bs-dismiss="modal">Annuler</button>
           <button type="submit" class="btn text-white" id="change" style="background-color: #b78a62;">Changer</button>
 
-        </div>
-        </form>
+        </div> 
+       </form>
       </div>  
     </div>
   </div>
 
+</body>
 
+	<div th:include="_footer :: _footer"></div>
  
 
 <script>

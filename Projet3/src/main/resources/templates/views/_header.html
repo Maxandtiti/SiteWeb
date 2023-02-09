@@ -1,0 +1,71 @@
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<!-- barre de navigation 23.01.19-21h20 -->
+<header th:fragment="_header">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand me-2 mb-1">
+				<img src="logo-site.png" height="40" alt="logo" loading="lazy">
+			</a>
+
+			<div class="nav-item text-white"> Bonjour: 
+		<!--  		<span th:text="${#authentication.getPrincipal().getUsername()}"></span>-->
+			</div>
+			&nbsp;&nbsp;&nbsp;
+			<div class="title text-center text-white ">NOMDUSITEWEB</div>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse " id="navbarSupportedContent">
+				<ul class="navbar-nav text-end ms-auto">
+					<li class="nav-item ">
+						<a class="nav-link text-white" href="/index">
+							<span class="d-grid gap-2 d-lg-inline-block">Accueil</span>
+						</a>
+					</li>
+					<li class="nav-item" id="my-account">
+						<a class="nav-link text-white" href="/moncompte/{id}">
+							<span class="d-grid gap-2 d-lg-inline-block">Mon Compte</span>
+						</a>
+					</li>
+					<li class="nav-item" id="admin-events">
+						<a class="nav-link text-white" >
+							<span class="d-grid gap-2 d-lg-inline-block">Gestion ADMIN</span>
+						</a>
+					</li>
+					<li class="nav-item" id="my-events">
+						<a class="nav-link text-white" href="/myevents/{id}(id=${session.attribute.idusers})}">
+							<span class="d-grid gap-2 d-lg-inline-block">Mes
+								événements</span>
+						</a>
+					</li>
+					<li class="nav-item" id="create-event">
+						<a class="nav-link text-white" href="/createEvent">
+							<span class="d-grid gap-2 d-lg-inline-block">Créer un
+								événement</span>
+						</a>
+					</li>
+					<li class="nav-item" id="register-link">
+						<a class="nav-link text-white" href="/register">
+							<span class="d-grid gap-2 d-lg-inline-block">S'inscrire</span>
+						</a>
+					</li>
+					<li class="nav-item" id="login-link">
+						<a class="nav-link text-white" href="/login">
+							<span class="d-grid gap-2 d-lg-inline-block">Se connecter</span>
+						</a>
+					</li>
+					<li class="nav-item" id="logout-link">
+						<a class="nav-link text-white" href="/logout">
+							<span class="d-grid gap-2 d-lg-inline-block">Se
+								déconnecter</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</nav>
+</header>
