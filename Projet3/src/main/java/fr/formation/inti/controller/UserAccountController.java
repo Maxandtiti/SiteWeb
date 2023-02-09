@@ -38,6 +38,7 @@ public class UserAccountController {
 
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 	
+	
 	// Login
 		@RequestMapping(value = "/login", method = RequestMethod.GET)
 		public ModelAndView displayLogin(ModelAndView modelAndView, Users user) {
