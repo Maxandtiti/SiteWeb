@@ -23,7 +23,7 @@ import fr.formation.inti.repository.MyEventsRepository;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/myevents")
-public class EventController {
+public class EventControllerAPI {
 	
 	
 	
@@ -32,7 +32,7 @@ public class EventController {
 	private MyEventsRepository myEventsRepository;
 	
 
-	public EventController(MyEventsRepository myEventsRepository) {
+	public EventControllerAPI(MyEventsRepository myEventsRepository) {
 		super();
 		this.myEventsRepository = myEventsRepository;
 	}
