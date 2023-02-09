@@ -55,15 +55,15 @@ public class UserAccountController {
 
 				if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
 					// successfully logged in
-					modelAndView.addObject("message", "Successfully logged in!");
+					modelAndView.addObject("message", "Connexion réussie !");
 					modelAndView.setViewName("eventinfo");
 				} else {
 					// wrong password
-					modelAndView.addObject("message", "Incorrect password. Try again.");
+					modelAndView.addObject("message", "Le mot de passe est incorrect. Essayez à nouveau.");
 					modelAndView.setViewName("logIn");
 				}
 			} else {
-				modelAndView.addObject("message", "The email provided does not exist!");
+				modelAndView.addObject("message", "L'email fourni n'existe pas !");
 				modelAndView.setViewName("logIn");
 
 			}
@@ -102,7 +102,7 @@ public class UserAccountController {
 
 		Users existingUser = userRepository.findByEmail(user.getEmail());
 		if (existingUser != null) {
-			modelAndView.addObject("message", "This email already exists!");
+			modelAndView.addObject("message", "Cet email existe déjà !");
 			modelAndView.setViewName("error");
 		} else {
 			user.setPassword(encoder.encode(user.getPassword()));
@@ -117,7 +117,7 @@ public class UserAccountController {
 			mailMessage.setTo(user.getEmail());
 			mailMessage.setSubject("Complete Registration!");
 			mailMessage.setFrom("eventwebapp212@gmail.com");
-			mailMessage.setText("To confirm your account, please click here : "
+			mailMessage.setText("Pour confirmer votre compte, cliquez ici : "
 					+ "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
 
 			emailSenderService.sendEmail(mailMessage);
@@ -141,7 +141,7 @@ public class UserAccountController {
 			userRepository.save(user);
 			modelAndView.setViewName("accountVerified");
 		} else {
-			modelAndView.addObject("message", "The link is invalid or broken!");
+			modelAndView.addObject("message", "Le lien est invalide ou cassé !");
 			modelAndView.setViewName("error");
 		}
 
@@ -178,17 +178,17 @@ public class UserAccountController {
 			mailMessage.setTo(existingUser.getEmail());
 			mailMessage.setSubject("Complete Password Reset!");
 			mailMessage.setFrom("eventwebapp212@gmail.com");
-			mailMessage.setText("To complete the password reset process, please click here: "
+			mailMessage.setText("Pour terminer la procédure de réinitialisation du mot de passe, veuillez cliquer ici : "
 					+ "http://localhost:8080/confirm-reset?token=" + confirmationToken.getConfirmationToken());
 
 			emailSenderService.sendEmail(mailMessage);
 
 			modelAndView.addObject("message",
-					"Request to reset password received. Check your inbox for the reset link.");
+					"Demande de réinitialisation du mot de passe reçue. Vérifiez votre boîte de réception pour le lien de réinitialisation.");
 			modelAndView.setViewName("successForgotPassword");
 
 		} else {
-			modelAndView.addObject("message", "This email does not exist!");
+			modelAndView.addObject("message", "Cet email n'existe pas !");
 			modelAndView.setViewName("error");
 		}
 
@@ -207,7 +207,7 @@ public class UserAccountController {
 			modelAndView.addObject("email", user.getEmail());
 			modelAndView.setViewName("resetPassword");
 		} else {
-			modelAndView.addObject("message", "The link is invalid or broken!");
+			modelAndView.addObject("message", "Le lien est invalide ou cassé !");
 			modelAndView.setViewName("error");
 		}
 
@@ -231,10 +231,10 @@ public class UserAccountController {
 			// System.out.println(tokenUser.getPassword());
 			userRepository.save(tokenUser);
 			modelAndView.addObject("message",
-					"Password successfully reset. You can now log in with the new credentials.");
+					"Le mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec les nouvelles informations d'identification.");
 			modelAndView.setViewName("successResetPassword");
 		} else {
-			modelAndView.addObject("message", "The link is invalid or broken!");
+			modelAndView.addObject("message", "Le lien est invalide ou cassé !");
 			modelAndView.setViewName("error");
 		}
 

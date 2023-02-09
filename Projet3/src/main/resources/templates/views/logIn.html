@@ -36,6 +36,16 @@
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
 
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	
+	<link href="css/moncompte.css" rel="stylesheet">
+	
 <title>Connexion</title>
 </head>
 
@@ -92,12 +102,35 @@
 							<div class="card ">
 								<div class="card-body">
 									<!-- Email-->
-									<form>
+									<div th:if="${param.error}">Mail ou mot de passe
+										incorrect</div>
+									<div th:if="${param.logout}">Vous avez été déconnecté</div>
+									<form th:action="@{/login_check}" method="post">
+										<!-- <div>
+											<label>
+												User Name :
+												<input type="text" name="email" />
+											</label>
+										</div>
+										<div>
+											<label>
+												Password:
+												<input type="password" name="password" />
+											</label>
+										</div>
+										<div>
+											<input type="submit" value="Sign In" />
+										</div>
+
+ -->
+
+
+
 										<div class="row">
 											<div class="col">
 												<div class="form-group focused">
-													<label class="form-control-label" for="input-email">Email</label>
-													<input type="email" id="input-email"
+													<label class="form-control-label">Email</label>
+													<input type="email" name="email"
 														class="form-control form-control-alternative"
 														placeholder="Email" maxlength="45">
 
@@ -105,14 +138,13 @@
 											</div>
 										</div>
 
-										<!-- Mot de passe -->
+										<!-- MOT DE PASSE -->
 
 										<div class="row">
 											<div class="col">
 												<div class="form-group focused">
-													<label class="form-control-label" for="input-mdp">Mot
-														de passe</label>
-													<input type="password" id="input-mdp"
+													<label class="form-control-label">Mot de passe</label>
+													<input type="password" name="password"
 														class="form-control form-control-alternative"
 														placeholder="Mot de passe" maxlength="45">
 												</div>
@@ -121,48 +153,53 @@
 
 
 
-										<!-- Se connecter -->
+										<!-- SE CONNECTER -->
 
 										<div class="row">
 											<div class="col">
-												<div class="form-group focused">
+											
+											<input class="btn btn-dark btn-lg btn-block"
+														style="background: #b78a62" type="submit" value="Se connecter" />
+											
+												<!-- <div class="form-group focused">
 													<a class="btn btn-dark btn-lg btn-block"
-														style="background: #b78a62" href="#!" role="button">
+														style="background: #b78a62" type="submit" role="button">
 														<i class="btn-search"></i>
 														Se connecter
 													</a>
-												</div>
+												</div> -->
 											</div>
 										</div>
 
 
-										<!-- Mot de passe oublié -->
+										<!-- <!-- Mot de passe oublié -->
 										<p class="text-dark">
-											<a href="Mdpoublié.html"> Mot de passe oublié?</a>
+											<a href="/forgot-password"> Mot de passe oublié?</a>
 										</p>
 
-										<!-- Pas de compte-->
+									</form>
+									<!-- Pas de compte-->
 
-										<p class="text-dark">
-											Vous n'avez pas encore de compte?
-											<a href="Register.html">Créez-en un!</a>
-										</p>
+									<p class="text-dark">
+										Vous n'avez pas encore de compte?
+										<a href="/register">Créez-en un!</a>
+									</p>
 									</form>
 								</div>
 							</div>
 
 							<!-- Ou réseaux sociaux FACEBOOK-->
-							<div class="card ">
+							<!-- <div class="card ">
 								<div class="card-body">
 
 									<div class="d-flex justify-content-around">
 										<div class="row">
 											<div class="col-6 text-center d-flex align-items-center">
 												<div class="form-group focused">
-													<!--<label class="form-control-label" for="input-none">
-                                                        </label>-->
+													<label class="form-control-label" for="input-none">
+                                                        </label>
 													<br>
-													<a class="btn btn-dark btn-lg btn-block"
+												<a class="btn btn-dark btn-lg btn-block"
 														style="background-color: #3b5998" href="#!" role="button">
 														<i class="fa fa-facebook-f me-2"></i>
 														Continue with Facebook
@@ -172,7 +209,7 @@
 										</div>
 									</div>
 
-									<!-- Ou réseaux sociaux TWITTER-->
+									Ou réseaux sociaux TWITTER
 									<div class="d-flex justify-content-around">
 										<div class="row">
 											<div class="col-6 text-center">
@@ -188,7 +225,7 @@
 										</div>
 									</div>
 									<br>
-									<!-- Ou réseaux sociaux GOOGLE +-->
+									Ou réseaux sociaux GOOGLE +
 									<div class="d-flex justify-content-around">
 										<div class="row">
 											<div class="col-6 text-center">
@@ -200,8 +237,8 @@
 													</a>
 												</div>
 											</div>
-										</div>
-									</div>
+										</div> 
+									</div> 
 								</div>
 							</div>
 						</div>
@@ -210,26 +247,27 @@
 
 
 				</div>
-			</div>
-		</div>
-	</div>
+			</div> -->
+						</div>
+					</div>
 
 
 
-	<!-- Pied de page -->
-	<footer class="mt-auto bg-dark text-center text-light">
-		<div class="container">
-			<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-				<li class="nav-item">
-					<a href="about.html" class="nav-link px-2 text-white">A propos</a>
-				</li>
-				<li class="nav-item">
-					<a href="contacts.html" class="nav-link px-2 text-white">Contact</a>
-				</li>
-			</ul>
-			<p class="text-center text-white">Copyright 2023 ®</p>
-		</div>
-	</footer>
+					<!-- Pied de page -->
+					<footer class="mt-auto bg-dark text-center text-light">
+						<div class="container">
+							<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+								<li class="nav-item">
+									<a href="about.html" class="nav-link px-2 text-white">A
+										propos</a>
+								</li>
+								<li class="nav-item">
+									<a href="contacts.html" class="nav-link px-2 text-white">Contact</a>
+								</li>
+							</ul>
+							<p class="text-center text-white">Copyright 2023 ®</p>
+						</div>
+					</footer>
 </body>
 
 </html>

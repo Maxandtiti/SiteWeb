@@ -91,8 +91,8 @@
 								<div class="row gy-2">
 									<div class="col-12">
 										<div class="form-group focused">
-											<label class="form-control-label" for="input-email">Email</label>
-											<input type="email" id="input-email"
+											<label class="form-control-label" for="email">Email</label>
+											<input type="email" th:field="*{email}" name="email"
 												class="form-control form-control-alternative"
 												placeholder="Votre email" maxlength="45">
 										</div>
@@ -104,9 +104,15 @@
 
 								<div class="d-flex justify-content-around">
 									<div class="col-4 text-center six-wrap">
-										<button class="btn-search rounded" type="button">Envoyer</button>
+										<!-- <button class="btn-search rounded" type="button">Envoyer</button> -->
+										<input class="btn btn-dark btn-lg btn-block"
+														style="background: #b78a62" type="submit" value="Envoyer" />
+										
 									</div>
 								</div>
+
+<input class="btn btn-dark btn-lg btn-block"
+														style="background: #b78a62" type="submit" value="Envoyer" />
 
 								<!-- Texte -->
 
