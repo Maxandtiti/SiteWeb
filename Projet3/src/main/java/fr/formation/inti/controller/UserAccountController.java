@@ -49,11 +49,12 @@ public class UserAccountController {
 	}
 
 	@RequestMapping(value = "/createEvent", method = RequestMethod.POST)
-	public String newEvent(MyEvents myEvents) {
+	public String newEvent(MyEvents myEvents, UserApp user, HttpSession session) {
+		myEvents.setUser((UserApp)session.getAttribute("user"));
 		System.out.println("je suis rentrée dans le formulaire create");
 		MyEventsRepo.save(myEvents);
 		System.out.println(myEvents);
-		return "index";
+		return "redirect:/index";
 
 	}
 

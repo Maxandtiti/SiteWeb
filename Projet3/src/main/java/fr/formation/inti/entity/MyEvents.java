@@ -3,8 +3,6 @@ package fr.formation.inti.entity;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,19 +19,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "myevents")
 public class MyEvents {
 
-	public Set<UserApp> users = new HashSet<UserApp>(0);
+	private UserApp user;	
 	
-//	@OneToOne(fetch = FetchType.EAGER, mappedBy ="myevents")
-//	public Set<UserApp> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(Set<UserApp> users) {
-//		this.users = users;
-//	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idusers")
+	public UserApp getUser() {
+		return user;
+	}
+
+	public void setUser(UserApp user) {
+		this.user = user;
+	}
 
 	public Integer idmyevents;
-	public Integer idusers;
+//	public Integer idusers;
 	public String slug;
 	public String title;
 	public String description;
@@ -81,14 +79,14 @@ public class MyEvents {
 
 	
 //	@OneToMany(fetch = FetchType.EAGER)
-	@Column(nullable = false, name = "idusers")
-	public Integer getIduser() {
-		return idusers;
-	}
-
-	public void setIduser(Integer idusers) {
-		this.idusers = idusers;
-	}
+//	@Column(nullable = false, name = "idusers")
+//	public Integer getIduser() {
+//		return idusers;
+//	}
+//
+//	public void setIduser(Integer idusers) {
+//		this.idusers = idusers;
+//	}
 
 
 	@Column(name = "slug", length = 200)

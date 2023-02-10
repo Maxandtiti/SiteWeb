@@ -13,13 +13,14 @@ public class MainController {
 	
 	@GetMapping("/test")
 	public String test( Model model) {
-		return"test";
+		return"index";
 	}
 	@GetMapping(value={"/","/index"})
 	public String index(@ModelAttribute Formulaire formulaire,  Model model) {
 		model.addAttribute("formulaire", formulaire);
 		return"index";
 	}
+	
 	
 
 	

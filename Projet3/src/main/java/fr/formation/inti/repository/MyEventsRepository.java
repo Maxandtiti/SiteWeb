@@ -8,6 +8,6 @@ import fr.formation.inti.entity.MyEvents;
 
 public interface MyEventsRepository extends JpaRepository<MyEvents, Integer> {
 	
-	List <MyEvents> findByIduser(Integer iduser);
+//	List <MyEvents> findByIduser(Integer iduser);
 
 }
