@@ -47,7 +47,7 @@ const eventId = uri.split('/').pop();
 
 
 
-fetch(`http://localhost:8080/api/myevents/${eventId}`)
+fetch(`http://localhost:8080/api/myevents/event/${eventId}`)
 .then((response) => {
   if (!response.ok) {
     throw new Error("Erreur de réponse du serveur");

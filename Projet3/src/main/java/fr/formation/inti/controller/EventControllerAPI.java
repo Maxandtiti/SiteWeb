@@ -76,6 +76,16 @@ public class EventControllerAPI {
 	}
 	
 	
+	
+	@GetMapping("/event/{idmyevents}")
+	public MyEvents getById(@PathVariable Integer idmyevents){
+		return myEventsRepository.findById(idmyevents).orElse(null);
+		
+	}
+	
+
+	
+	
 	/**
 	 * Post Save
 	 * @param MyEvents

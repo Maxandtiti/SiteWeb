@@ -40,7 +40,7 @@ public class PageEventController {
 	public String PrivateeventsGET(@PathVariable String id) {	  
 
 		try {
-			    URL url = new URL(String.format("http://localhost:8080/api/myevents/%s", id));
+			    URL url = new URL(String.format("http://localhost:8080/api/myevents/event/%s", id));
 			    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			    connection.setRequestMethod("GET");
 			    connection.setDoInput(true);

@@ -45,32 +45,46 @@
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-<link href="css/moncompte.css" rel="stylesheet">
+<link href="../css/avancee.css" rel="stylesheet">
+<head>
+<title>Error</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
 
-	<head>
-		<title>Registration Success</title>
-	</head>
-	<body  class="d-flex flex-column min-vh-100">
-		<div style="text-align:center">
-			<span th:text="${message}"></span>
+	<div class="main-content my-auto">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8 m-auto order-xl-1">
+					<div class="card bg-secondary shadow">
+						<div class="card-header border-0">
+							<div class="row align-items-center">
+								<div class="col-8">
+									<h3 class="mb-0">Une erreur est survenu</h3>
+								</div>
+							</div>
+						</div>
+						<div class="card-body bg-light">
+
+							Vous allez être redirigé vers l'accueil dans <span id="counter">4</span> secondes
+
+
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="row">
-		<div class="col">
-		</div>
-		</div>
-		<div class="col">
-		<div id="counter">5</div>
-		</div>
-   <!--  <script>
-        setInterval(function() {
-            var div = document.querySelector("#counter");
-            var count = div.textContent * 1 - 1;
-            div.textContent = count;
-            if (count <= 0) {
-                window.location.replace("/");
-            }
-        }, 1000);
-    </script>
-		 -->
-	</body>
+	</div>
+
+	<script>
+		setInterval(function() {
+			var div = document.querySelector("#counter");
+			var count = div.textContent * 1 - 1;
+			div.textContent = count;
+			if (count <= 0) {
+				window.location.replace("/");
+			}
+		}, 1000);
+	</script>
+
+</body>
 </html>

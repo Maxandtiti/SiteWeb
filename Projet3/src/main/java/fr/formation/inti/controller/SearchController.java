@@ -29,6 +29,16 @@ public class SearchController {
 		System.out.println(userconnected);
 		return "search";
 	}
+	
+	
+	@GetMapping("/login_infos")
+	public String getsearchLOGIN(@ModelAttribute Formulaire formulaire,  Model model) {
+		model.addAttribute("formulaire", formulaire);
+		formulaire.setCity("Tourcoing");
+		return "search";
+	}
+	
+	
 	@PostMapping("/searchform")
 	public String search(@ModelAttribute Formulaire formulaire, Model model) {
 		model.addAttribute("formulaire", formulaire);
