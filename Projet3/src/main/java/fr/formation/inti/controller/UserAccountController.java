@@ -1,6 +1,8 @@
 package fr.formation.inti.controller;
 
 import java.security.Principal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpSession;
 
@@ -52,6 +54,17 @@ public class UserAccountController {
 	public String newEvent(MyEvents myEvents, UserApp user, HttpSession session) {
 		myEvents.setUser((UserApp)session.getAttribute("user"));
 		System.out.println("je suis rentrée dans le formulaire create");
+
+		System.out.println(myEvents);
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+		String firstdate_begin = dateFormat.format(myEvents.getFirstdate_begin());
+		String firstdate_end = dateFormat.format(myEvents.getFirstdate_end());
+
+		String detailed_times_string = "[{\"begin\": \"" + firstdate_begin +  "\", \"end\": \"" + firstdate_end + "\"}]";
+		
+		myEvents.setDetailed_times(detailed_times_string);
+		
 		MyEventsRepo.save(myEvents);
 		System.out.println(myEvents);
 		return "redirect:/index";

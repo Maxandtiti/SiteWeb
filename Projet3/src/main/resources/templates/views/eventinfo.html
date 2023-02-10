@@ -94,6 +94,8 @@ fetch(`https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-public
     
    //  Récupération du tableau dans le json + récupérer le mois
       const timingArray = JSON.parse(json.record.fields.timings);
+   
+
    	  const output = timingArray.map(item => {
       const begin = new Date(item.begin);
       const end = new Date(item.end);

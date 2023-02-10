@@ -87,9 +87,12 @@ fetch(`http://localhost:8080/api/myevents/${eventId}`)
     
    
 
-    /*
-   //  Récupération du tableau dans le json + récupérer le mois
-      const timingArray = JSON.parse(json.record.fields.timings); // PAS FAIT
+    
+    // Récupération du tableau dans le json + récupérer le mois
+      const timingArray = JSON.parse(json.detailed_times);
+      console.log(timingArray)
+      
+            
    	  const output = timingArray.map(item => {
       const begin = new Date(item.begin);
       const end = new Date(item.end);
@@ -114,7 +117,7 @@ ${output.join("")}
 </table>
 `;
 
-*/
+
  		  
  	// Adresse location_address	  
  	
@@ -135,25 +138,14 @@ ${output.join("")}
 
  		document.getElementById("adresse").innerHTML = adresse;
  	
- 		
- 	// Coordonnées + minimap
- 	const longlat = json.location_coordinates;
- 	const [latitude, longitude] = longlat.split(", ");
-
  
- 	
- 	 var map = L.map('map').setView([latitude, longitude], 13);
-     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-     }).addTo(map);
-    
-     var marker = L.marker([latitude, longitude]).addTo(map);
-	
      
  		  
  	// Accessibilité hi;pi:mi;vi  
  	const access = json.accessibility;
  	
+ 	
+
  	
  	
  	let vi = "<i class='fa-solid fa-question'></i>";
@@ -164,7 +156,7 @@ ${output.join("")}
 
  	
  	 if (access) {
- 		let values = access.split(";");
+ 		let values = access.split(",");
  	values.forEach(function(value) {
  	  switch (value) {
  	    case "hi":
@@ -204,14 +196,43 @@ ${output.join("")}
 	 	     const lien = json.adress_perso;
 	 	     
 	 
+	 	     
+	 	     
 	 	    const link = lien.length > 20 ? lien.substr(0, 30) + "..." : lien;
 	 	    const linkElement = `<a href="${lien}" target="_blank">${link}</a>`;
 	 	   document.getElementById("linkElement").innerHTML = linkElement;
 	 	 
-		 document.getElementById("phone").innerHTML = phone;
-	 	 document.getElementById("email").innerHTML = email;
-	 	 document.getElementById("link").innerHTML = link; 	     
+     
 	 	
+	 	   
+	 		// Coordonnées + minimap
+		 	
+	 		var search = json.address + ' ' + zipcode
+	 		
+	 		
+		 	
+	 		async function getCoordinates(search) {
+	 			  const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${search}&format=json`);
+	 			  const data = await response.json();
+	 			  const [firstResult] = data;
+	 			  return [firstResult.lat, firstResult.lon];
+	 			}
+		 	
+		
+		
+
+		 	      	 
+	 		getCoordinates(search).then((coords) => {
+	 			  const latitude = coords[0];
+	 			  const longitude = coords[1];
+	 			  var map = L.map('map').setView([latitude, longitude], 13);
+	 			  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	 			    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	 			  }).addTo(map);
+	 			  var marker = L.marker([latitude, longitude]).addTo(map);
+	 			});
+	 	   
+	 	   
 	 	 
 	 	// Vérifier si les Nodelist sont vides, dans ce cas rajouter un display none sur les sections correspondantes
 	 	      		 if (phone == null) {
@@ -224,6 +245,15 @@ ${output.join("")}
 	 	      		    document.getElementById("link-section").style.display = "none";
 	 	      		  }
 
+	 	      		  
+	 	     		document.getElementById("phone").innerHTML = phone;
+	 	   	 	 document.getElementById("email").innerHTML = email;
+	 	   	 	 document.getElementById("link").innerHTML = link; 	
+	 	      		
+	 	      		
+	 
+	 	      		      		  
+	 	      		  
   })
 
     .catch((error) => {
