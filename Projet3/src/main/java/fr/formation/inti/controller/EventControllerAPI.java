@@ -2,6 +2,9 @@ package fr.formation.inti.controller;
 
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.formation.inti.entity.MyEvents;
-
+import fr.formation.inti.entity.UserApp;
 import fr.formation.inti.repository.MyEventsRepository;
+import fr.formation.inti.repository.UserAppRepository;
 
 
 
@@ -30,6 +34,9 @@ public class EventControllerAPI {
 	
 	@Autowired
 	private MyEventsRepository myEventsRepository;
+	
+	@Autowired
+	private UserAppRepository userRepository;
 	
 
 	public EventControllerAPI(MyEventsRepository myEventsRepository) {
@@ -60,8 +67,12 @@ public class EventControllerAPI {
 	
 	
 	@GetMapping("/{idmyevents}")
-	public MyEvents getById(@PathVariable Integer idmyevents){
-		return myEventsRepository.findById(idmyevents).orElse(null);
+	public List<MyEvents> getById(@PathVariable Integer idmyevents, HttpSession session, UserApp user, MyEvents myEvents){
+		Optional<UserApp> user1 = userRepository.findById(idmyevents);
+		List<MyEvents> list = myEventsRepository.findByUserApp(user1);
+		System.out.println(list);
+//		return myEventsRepository.findById(idmyevents).orElse(null);
+		return myEventsRepository.findByUserApp(user1);
 	}
 	
 	

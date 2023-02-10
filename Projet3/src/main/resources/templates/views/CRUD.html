@@ -36,81 +36,89 @@
 
 </head>
 
-	<div th:include="_header :: _header"></div>
-	
-	
-	
-	<body class="d-flex flex-column min-vh-100">
+<div th:include="_header :: _header"></div>
 
 
 
-<div class="row my-auto">
-	<div class="col-11 mx-auto order-1">
-		<div style="margin-top: 100px;">
-			<div class="card-header border-0">
-				<div class="row">
-					<div class="col-lg-2"></div>
-					<div class="col text-center my-auto">
-						<h2>Liste de mes événements</h2>
-					</div>
-					<div class="col-2 text-right" style="text-align: center;">
-						<input type="text" id="customSearch" placeholder="Rechercher"
-							class="form-control">
+<body class="d-flex flex-column min-vh-100">
+
+
+
+	<div class="row my-auto">
+		<div class="col-11 mx-auto order-1">
+			<div style="margin-top: 100px;">
+				<div class="card-header border-0">
+					<div class="row">
+						<div class="col-lg-2"></div>
+						<div class="col text-center my-auto">
+							<h2>Liste de mes événements</h2>
+						</div>
+						<div class="col-2 text-right" style="text-align: center;">
+							<input type="text" id="customSearch" placeholder="Rechercher"
+								class="form-control">
+						</div>
 					</div>
 				</div>
+
+
+				<table data-toggle="table"
+					th:data-url="@{http://localhost:8080/api/myevents/{id}(id=${session.user.idusers})}"
+					data-pagination="true" data-page-size="[10]" data-locale="fr-FR"
+					data-search="true" data-search-selector="#customSearch"
+					class="table table-light table-striped text-center">
+
+					<thead>
+						<tr>
+							<th data-field="preview" data-formatter="previewFormatter">Image</th>
+							<th data-field="title">Titre</th>
+							<th data-field="times">Dates</th>
+							<th data-field="city">Ville</th>
+							<th data-field="description">Description</th>
+							<th data-field="idmyevents" data-formatter="buttons">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+
+
+					</tbody>
+				</table>
 			</div>
-
-			<table data-toggle="table"
-				data-url="http://localhost:8080/api/myevents" data-pagination="true"
-				data-page-size="[10]" data-locale="fr-FR" data-search="true"
-				data-search-selector="#customSearch"
-				class="table table-light table-striped text-center">
-
-				<thead>
-					<tr>
-						<th data-field="preview" data-formatter="previewFormatter">Image</th>
-						<th data-field="title">Titre</th>
-						<th data-field="times">Dates</th>
-						<th data-field="city">Ville</th>
-						<th data-field="description">Description</th>
-						<th data-field="idmyevents" data-formatter="buttons">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-
-
-
-
-				</tbody>
-			</table>
 		</div>
 	</div>
-</div>
 
 
 
-     <!-- Modal -->
-          <div class="modal fade" id="DeleteEvent" tabindex="-1" aria-labelledby="DeleteEventLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                 <form action="#" th:action="@{/mesevenements/delete}" method="POST" th:object="${myevents}">
-                 <input type="hidden" name="idmyevents">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="DeleteEventLabel">Suppression d'un événement</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-     						<div class="modal-body"><span>${row.title}</span>
+	<!-- Modal -->
+	<div class="modal fade" id="DeleteEvent" tabindex="-1"
+		aria-labelledby="DeleteEventLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<form action="#" th:action="@{/mesevenements/delete}" method="POST"
+					th:object="${myevents}">
+					<input type="hidden" name="idmyevents">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="DeleteEventLabel">Suppression
+							d'un événement</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="modal-body">
+							<span>${row.title}</span>
 						</div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                  <button type="submit" class="btn btn-danger" data-idmyevents="${row.idmyevents}">Supprimer</button>
-                </div>
-                </form>
-              </div>
-            </div>
-          </div>  
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Annuler</button>
+						<button type="submit" class="btn btn-danger"
+							data-idmyevents="${row.idmyevents}">Supprimer</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -118,7 +126,7 @@
 
 
 </body>
-	<div th:include="_footer :: _footer"></div>
+<div th:include="_footer :: _footer"></div>
 
 <script>
 

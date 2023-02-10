@@ -21,7 +21,7 @@ public class MyEvents {
 
 	private UserApp user;	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="idusers")
 	public UserApp getUser() {
 		return user;
