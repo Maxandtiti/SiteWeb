@@ -18,7 +18,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
+<main class="flex-grow-1">
 	<div th:include="_header :: _header"></div>
 	<div th:include="_search :: _search"></div>
 
@@ -53,9 +53,15 @@
 
 	</div>
 
+
+
 	<script>
-		fetch("https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-publics-openagenda/records?where=lastdate_end%20%3E%20NOW%28%29%20&limit=10&offset=0&lang=fr&timezone=UTC")
-			// Converting received data to JSON
+	const timestamp = Date.now();
+	
+		fetch("https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-publics-openagenda/records?where=lastdate_end%20%3E%20NOW%28%29&limit=10&offset=0&lang=fr&timezone=UTC")
+			
+		
+		// Converting received data to JSON
 			.then((response) => response.json())
 			.then((json) => {
 				// 2. Create a variable to store HTML table headers
@@ -148,6 +154,7 @@
 			});
 	</script>
 
+</main>
 	<div th:include="_footer :: _footer"></div>
 </body>
 

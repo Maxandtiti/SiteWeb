@@ -43,7 +43,6 @@
 <body class="d-flex flex-column min-vh-100">
 
 
-
 	<div class="row my-auto">
 		<div class="col-11 mx-auto order-1">
 			<div style="margin-top: 100px;">
@@ -73,7 +72,7 @@
 							<th data-field="title">Titre</th>
 							<th data-field="times">Dates</th>
 							<th data-field="city">Ville</th>
-							<th data-field="description">Description</th>
+							<th data-field="longdescription" data-formatter="limitDescriptionFormatter">Description</th>
 							<th data-field="idmyevents" data-formatter="buttons">Actions</th>
 						</tr>
 					</thead>
@@ -112,6 +111,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
+					<button type="submit" class="btn btn-danger"
+							data-idmyevents="${row.idmyevents}">Voir</button>
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Annuler</button>
 						<button type="submit" class="btn btn-danger"
@@ -130,12 +131,18 @@
 </body>
 <div th:include="_footer :: _footer"></div>
 
+
+
 <script>
 
 // Ajouter les boutons Editer et Supprimer pour chaque élément de la ligne
  
+ 
+ 
+ 
 function buttons(value, row) {
-  return `<a href="/edit/${row.idmyevents}" class="btn btn-primary btn-sm">Editer</a> 
+  return `<a href="/privateevent/${row.idmyevents}" class="btn btn-success btn-sm">Voir</a> 
+  			<a href="/edit/${row.idmyevents}" class="btn btn-primary btn-sm">Editer</a> 
           <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#DeleteEvent" data-idmyevents="${row.idmyevents}"  data-title="${row.title}">Supprimer</button>`;
 
 }
@@ -158,5 +165,14 @@ $('#DeleteEvent').on('show.bs.modal', function (event) {
 	}
 </script>
 
+<script>
+function limitDescriptionFormatter(value, row, index) {
+	  if (value === null || value === undefined) {
+	    return '';
+	  }
+
+	  return value.length > 150 ? value.substring(0, 150) + '...' : value;
+	}
+</script>
 
 </html>

@@ -30,15 +30,46 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<title>Éditer un événement</title>
+
+<!--  NE PAS ACTIVER CELA CONSOMME TROP DE NOMBRES DE RECHERCHES SUR LE SITE / RECHERCHE ET J'AI PAS ENVIE DE PAYER !!!
+
+<script>
+  $(document).ready(function() {
+    $("#city").keyup(function() {
+      var city = $(this).val();
+      
+      if (city.length > 2) {
+        $.getJSON("http://www.mapquestapi.com/geocoding/v1/address?key=vMJiu7RsmgoTs66vvgaL2gy2fDcGESaS&location=" + city, function(data) {
+          console.log(data);
+
+          // Récupérer les suggestions de villes
+          var locations = data.results[0].locations;
+
+          // Vider la liste déroulante avant de l'actualiser
+          $("#suggestions").empty();
+
+          // Boucle sur les suggestions de villes + ajouter à la liste déroulante
+          for (var i = 0; i < locations.length; i++) {
+            $("#suggestions").append("<option value='" + locations[i].street + ", " + locations[i].adminArea5 + " " + locations[i].postalCode + " " + locations[i].adminArea3 + "'>" + locations[i].street + ", " + locations[i].adminArea5 + " " + locations[i].postalCode + " " + locations[i].adminArea3 + "</option>");
+          }
+        });
+      }
+    });
+  });
+</script>
+
+-->
 
 
-<title>Création d'un événement</title>
 
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
+<main class="flex-grow-1">
 	<div th:include="_header :: _header"></div>
 
 	<div class="main-content">
@@ -56,10 +87,11 @@
 							</div>
 						</div>
 
-						<form action="/createEvent" method="post">
+						<form  action="#" th:action="@{/editEvent}" method="post" th:object="${myevent}">
+						<input type="hidden" th:value="${session.user.idusers}" name="idusers">
+						<input type="hidden" th:value="*{idmyevents}" name="idmyevents">
 							<div class="card-group">
 								<div class="card border-0">
-
 									<!-- Votre événement-->
 									<div class="card-body">
 										<div class="row">
@@ -68,8 +100,8 @@
 													<label class="form-control-label">Nom de
 														l'événement</label>
 													<input type="text" name="title"
-														class="form-control form-control-alternative"
-														placeholder="Titre" maxlength="45">
+														class="form-control form-control-alternative text-dark"
+														placeholder="Titre" th:value="*{title}" maxlength="45">
 
 												</div>
 											</div>
@@ -85,7 +117,7 @@
 														<input type="text" name="preview"
 															class="
 															form-control form-control-alternative text-dark"
-															placeholder="URL Image"  maxlength="200">
+															placeholder="URL Image" th:value="*{preview}" maxlength="200">
 														
 														 
 													
@@ -93,25 +125,24 @@
 												</div>
 											</div>
 										</div>
-<div id="myModal" class=" modal-dialog modal-dialog-centered">
-  			<img class="modal-content" id="imgPreview">
-  													
-	</div>
 
+<div id="myModal" class=" modal-dialog modal-dialog-centered">
+  														<img class="modal-content" id="imgPreview">
+  													
+														</div>
 										<!-- Description-->
 										<div class="row">
 											<div class="col">
 
 												<div class="form-group focused">
 													<label class="form-control-label">Description</label>
-													<textarea class="form-control" rows="5"
-														placeholder=" ........" maxlength="600" name="longdescription"></textarea>
+													<textarea class="form-control text-dark" rows="5"
+														 maxlength="600" placeholder="....." th:text="*{longdescription}" name="longdescription" style="text: black;"></textarea>
 												</div>
 											</div>
 										</div>
 
-
-
+	
 
 										<!-- Choissisez votre catégorie-->
 										<br>
@@ -124,8 +155,8 @@
 
 													<input type="text" name="keywords"
 														class="
-														form-control form-control-alternative"
-														placeholder="mot1" maxlength="60">
+														form-control form-control-alternative text-dark"
+														th:value="*{keywords}" maxlength="60">
 
 												</div>
 												<!-- Adresse personnalisé-->
@@ -138,8 +169,8 @@
 															personnalisé</label>
 														<br>
 														<input type="text" name="adress_perso"
-															class="form-control form-control-alternative"
-															placeholder="URL">
+															class="form-control form-control-alternative text-dark"
+															th:value="*{adress_perso}">
 
 														<br>
 													</div>
@@ -158,6 +189,7 @@
 
 									<div class="pl-lg-4 mx-3">
 										<div class="row">
+										<input type="hidden" th:value="*{accessibility}" id="accessibilityValue">
 											<div class="col">
 												<div class="form-check">
 													<input class="form-check-input" type="checkbox" value="hi"
@@ -188,7 +220,7 @@
 											<div class="col">
 												<div class="form-check">
 													<input class="form-check-input" type="checkbox" value="vi"
-														name="accessibility">
+														name="accessibility" >
 													<label class="form-check-label">Handicap visuel</label>
 												</div>
 											</div>
@@ -196,8 +228,17 @@
 									</div>
 								</div>
 
+<script>
+//Vérifier les checkbox
 
-
+var accessibilityValue = document.getElementById("accessibilityValue").value;
+var checkboxes = document.getElementsByName("accessibility");
+for (var i = 0; i < checkboxes.length; i++) {
+  if (accessibilityValue.indexOf(checkboxes[i].value) !== -1) {
+    checkboxes[i].checked = true;
+  }
+}
+</script>
 
 								<div class="card border-0">
 									<div class="card-body">
@@ -210,8 +251,8 @@
 											<div class="form-group focused">
 													<label class="form-control-label">Résumé des dates</label>
 													<input type="text" name="times"
-														class="form-control form-control-alternative"
-														placeholder="Exemple: 08 Novembre 2023 au 15 Novembre 2023" maxlength="150">
+														class="form-control form-control-alternative text-dark"
+														th:value="*{times}" maxlength="150" placeholder="Exemple: Du 05 au 15 Novembre 2023">
 
 												</div>
 											
@@ -225,8 +266,8 @@
 												<div class="form-group focused">
 													<label class="form-control-label">Adresse</label>
 													<input type="text" name="address"
-														class="form-control form-control-alternative"
-														placeholder="Adresse" maxlength="150">
+														class="form-control form-control-alternative text-dark"
+														th:value="*{address}" maxlength="150" placeholder="Adresse">
 
 												</div>
 											</div>
@@ -242,9 +283,10 @@
 												<div class="col">
 													<div class="form-group focused">
 														<label class="form-control-label">Ville</label>
-														<input type="text" name="city"
-															class="form-control form-control-alternative"
-															placeholder="Ville" maxlength="60">
+														<input type="text" name="city" id="city"
+															class="form-control form-control-alternative text-dark"
+															th:value="*{city}" placeholder="Ville" maxlength="60">
+														<!--  	<select id="suggestions"></select>-->
 													</div>
 												</div>
 
@@ -254,8 +296,8 @@
 													<div class="form-group">
 														<label class="form-control-label">Code Postal</label>
 														<input type="number" name="zipcode"
-															class="form-control form-control-alternative"
-															placeholder="Code postal">
+															class="form-control form-control-alternative text-dark"
+															placeholder="Code postal" th:value="*{zipcode}">
 													</div>
 												</div>
 											</div>
@@ -272,8 +314,8 @@
 
 												<div class=" col">
 													<label>Date de début</label>
-													<input type="datetime-local" class="form-control"
-														name="firstdate_begin">
+													<input type="datetime-local" class="form-control text-dark"
+														name="firstdate_begin" th:value="*{firstdate_begin}">
 												</div>
 											</div>
 											<div class="row">
@@ -287,10 +329,15 @@
 
 												<div class=" col">
 													<label>Date de fin</label>
-													<input type="datetime-local" class="form-control"
-														name="firstdate_end">
+													<input type="datetime-local" class="form-control  text-dark"
+														name="firstdate_end" th:value="*{firstdate_end}">
+														 <p class="error-message" style="display: none; color: red;">La date de début doit être inférieure à la date de fin</p>
+  													</div>
 												</div>
 											</div>
+							
+											
+											
 
 											<div class="row">
 												<div class="col">
@@ -303,10 +350,10 @@
 													<div class="form-group">
 														<label class="form-control-label">Conditions</label>
 														<input type="text"
-															class="form-control form-control-alternative"
+															class="form-control form-control-alternative text-dark"
 															name="conditions"
 															placeholder="Exemple: Entrées à 20€ avec une boisson offerte"
-															maxlength="150">
+															maxlength="150" th:value="*{conditions}">
 													</div>
 												</div>
 
@@ -317,16 +364,13 @@
 							</div>
 
 
-
-
-
 							<!-- Annuler ou enregistrer -->
 							<div class="card border-0">
 								<div class="card-body">
 									<div class="row">
 										<div class="form-group text-right">
 											<a class="btn btn-search btn-dark btn-block"
-												style="background: #b78a62" href="/" role="button">
+												style="background: #b78a62" th:href="@{/mesevenements/{idusers}(idusers=${session.user.idusers})}" role="button">
 												<i class="btn-search"></i>
 												Annuler
 											</a>
@@ -345,10 +389,11 @@
 			</div>
 		</div>
 	</div>
-
-	<div th:include="_footer :: _footer"></div>
+	
+	</main>
+		<div th:include="_footer :: _footer"></div>
+		
 </body>
-
 <script>
 const startDateInput = document.querySelector('input[name="firstdate_begin"]');
 const endDateInput = document.querySelector('input[name="firstdate_end"]');
@@ -385,6 +430,7 @@ submitButton.addEventListener('input', function(event) {
 
 </script>
 
+
 <script>
 function displayModal() {
   var preview = document.querySelector('input[name="preview"]').value;
@@ -396,6 +442,8 @@ function closeModal() {
   document.getElementById("myModal").style.display = "none";
 }
 </script>
+
+
 
 
 </html>

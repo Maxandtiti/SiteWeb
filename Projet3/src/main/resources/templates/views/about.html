@@ -18,7 +18,6 @@
 
 </head>
 
-
 <body class="d-flex flex-column min-vh-100">
 
   
@@ -56,7 +55,7 @@
     </div>
   </div>
   
-  <div th:include="_footer :: _footer"></div>
+ 
     
   <script>
   const names = ["Maxime", "Shaïma", "Karim"];
@@ -75,6 +74,7 @@
     document.getElementById(`randomName${i}`).innerHTML = randomName;
   }
 </script>
+ <div class="fixed-bottom" th:include="_footer :: _footer"></div>
 </body>
 
 

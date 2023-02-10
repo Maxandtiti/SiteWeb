@@ -29,7 +29,7 @@
 </head>
 
 <body class="bg-gradient d-flex flex-column min-vh-100">
-
+<main class="flex-grow-1">
 	<div th:include="_header :: _header"></div>
 	<div th:include="_search :: _search"></div>
 
@@ -43,8 +43,8 @@
 	</div>
 
 
-
-	<div class="fixed-bottom" th:include="_footer :: _footer"></div>
+</main>
+	<div th:include="_footer :: _footer"></div>
 
 </body>
 
