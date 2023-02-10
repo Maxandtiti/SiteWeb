@@ -4,10 +4,9 @@
 <header th:fragment="_header">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand me-2 mb-1">
-				<img src="logo-site.png" height="40" alt="logo" loading="lazy">
-			</a>
 
+			<div class="title text-center text-white ">YoupiFinder</div>
+			&nbsp;&nbsp;&nbsp;
 			<div class="nav-item text-white">
 				<th:block th:if="${#authorization.expression('isAuthenticated()')}">
 				Bonjour
@@ -18,8 +17,6 @@
 
 
 			</div>
-			&nbsp;&nbsp;&nbsp;
-			<div class="title text-center text-white ">NOMDUSITEWEB</div>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"

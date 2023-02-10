@@ -85,9 +85,9 @@ public class UserAccountController {
 			user.setPassword(encoder.encode(user.getPassword()));
 			user.setRole("USER");
 			userRepository.save(user);
-
+			
 			ConfirmationToken confirmationToken = new ConfirmationToken(user);
-
+			
 			confirmationTokenRepository.save(confirmationToken);
 
 			SimpleMailMessage mailMessage = new SimpleMailMessage();

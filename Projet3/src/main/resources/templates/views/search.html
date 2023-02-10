@@ -34,10 +34,10 @@
 	<div th:include="_search :: _search"></div>
 
 	<!-- card-->
-	<p th:text="'id: ' + ${formulaire.keywords}" />
+<!-- 	<p th:text="'id: ' + ${formulaire.keywords}" />
 	<p th:text="'content: ' + ${formulaire.city}" />
 	<p th:text="'information: ' + ${formulaire.information}" />
-	<p th:text="'accessibility ' + ${formulaire.accessibility}" />
+	<p th:text="'accessibility ' + ${formulaire.accessibility}" /> -->
 	<div class="container-fluid mx-auto">
 		<div id="resultat"></div>
 	</div>
@@ -104,7 +104,7 @@ const where_keywords = nwherekey;
 const where_city ="location_city%20LIKE%20%27%25"+city+"%25%27%20AND%20";
 
 const where = where_info + where_access + where_keywords + where_city + "lastdate_end%20%3E%20NOW%28%29%20%20AND%20location_countrycode%20LIKE%20%27%25FR%25%27";
-const order_by ="%20&order_by=&limit=10&offset=0&timezone=UTC";
+const order_by ="%20&order_by=&limit=100&offset=0&timezone=UTC";
 
 	console.log('where_keywords',where_keywords);
 	console.log('where_city',where_city);

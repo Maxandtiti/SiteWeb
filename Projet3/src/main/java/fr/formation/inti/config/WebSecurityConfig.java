@@ -49,11 +49,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 
 		// The pages does not require login
-		http.authorizeRequests().antMatchers("/", "/login", "/createEvent").permitAll();
+		http.authorizeRequests().antMatchers("/", "/login").permitAll();
 
 		// /userInfo page requires login as USER or ADMIN.
 		// If no login, it will redirect to /login page.
-		http.authorizeRequests().antMatchers("/addForm","/eventinfo","/logout", "/confirm").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/addForm","/eventinfo","/logout", "/confirm","/createEvent").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
 		// For ADMIN only.
 		http.authorizeRequests().antMatchers("/deleteForm").access("hasRole('ROLE_ADMIN')");

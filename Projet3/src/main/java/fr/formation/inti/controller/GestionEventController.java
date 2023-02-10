@@ -56,9 +56,9 @@ public class GestionEventController {
 	
 	
 	@PostMapping("/mesevenements/delete")
-	public String DeleteMyEventPOST(@RequestParam("idmyevents") Integer ID)  {	  
+	public String DeleteMyEventPOST(@RequestParam("idmyevents") Integer ID, @RequestParam("idusers") Integer iduser)  {	  
 		myEventsRepository.deleteById(ID);
-	    return "index";
+	    return "redirect:/mesevenements/"+iduser;
 	}
 	
 	

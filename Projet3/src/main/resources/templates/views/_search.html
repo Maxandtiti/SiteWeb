@@ -32,11 +32,11 @@
 							</div>
 							<div class="col-lg-2 mb-4">
 								<select class="form-control form-control-alternative">
-									<option value="Enter_radius">Rayon</option>
-									<option value="5">5 Km</option>
-									<option value="10">10 Km</option>
-									<option value="25">25 Km</option>
-									<option value="50">50 Km</option>
+									<option disabled value="Enter_radius">Rayon</option>
+									<option disabled value="5">5 Km</option>
+									<option disabled value="10">10 Km</option>
+									<option disabled value="25">25 Km</option>
+									<option disabled value="50">50 Km</option>
 								</select>
 							</div>
 							<div class="col-sm-2 ">
@@ -56,12 +56,12 @@
 									<div class="col" style="display: flex; flex-direction: column;">
 										<div class="p-3">
 											<h6 class="heading-small text-dark mb-4">Horaires</h6>
-											<p class="text-start">Date de début</p>
-											<input type="date" id="start_date"
+											<p disabled class="text-start">Date de début</p>
+											<input disabled type="date" id="start_date"
 												class="form-control form-control-alternative"
 												min="2023-01-01"   >
-											<p class="pt-4 text-start">Heure de début</p>
-											<input type="time" id="start_hours" 
+											<p disabled class="pt-4 text-start">Heure de début</p>
+											<input disabled type="time" id="start_hours" 
 												class="form-control form-control-alternative">
 										</div>
 									</div>
@@ -77,7 +77,7 @@
 													et payant</label>
 											</div>
 											<div class="form-check">
-												<input class="form-check-input" type="radio" th:field="*{information}"
+												<input disabled class="form-check-input" type="radio" th:field="*{information}"
 													name="exampleRadios" id="pricefree" value="gratuit">
 												<label class="form-check-label" for="pricefree">Uniquement
 													gratuit</label>

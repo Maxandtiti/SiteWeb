@@ -97,7 +97,9 @@
 			<div class="modal-content">
 				<form action="#" th:action="@{/mesevenements/delete}" method="POST"
 					th:object="${myevents}">
+					<input type="hidden" name="idevent">
 					<input type="hidden" name="idmyevents">
+					<input type="hidden" th:value="${session.user.idusers}" name="idusers">
 					<div class="modal-header">
 						<h1 class="modal-title fs-5" id="DeleteEventLabel">Suppression
 							d'un événement</h1>
