@@ -50,7 +50,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
 			
 		GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
 		grantList.add(authority);
-		UserDetails userDetails = (UserDetails) new User(u.getfirstName(), //
+		UserDetails userDetails = (UserDetails) new User(u.getEmail(), //
 				u.getPassword(), grantList);
 
 		System.out.println("Apres attrib role" + userDetails.getAuthorities());

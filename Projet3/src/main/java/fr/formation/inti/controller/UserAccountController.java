@@ -2,6 +2,8 @@ package fr.formation.inti.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,7 +21,6 @@ import fr.formation.inti.entity.UserApp;
 import fr.formation.inti.repository.ConfirmationTokenRepository;
 import fr.formation.inti.repository.MyEventsRepository;
 import fr.formation.inti.repository.UserAppRepository;
-
 import fr.formation.inti.service.EmailSenderService;
 
 @Controller
@@ -47,37 +48,12 @@ public class UserAccountController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginUser(ModelAndView modelAndView, UserApp user) {
-
-		UserApp existingUser = userRepository.findByEmail(user.getEmail());
-		if (existingUser != null) {
-			// use encoder.matches to compare raw password with encrypted password
-
-			if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
-				// successfully logged in
-				modelAndView.addObject("message", "Connexion réussie !");
-				modelAndView.setViewName("eventinfo");
-			} else {
-				// wrong password
-				modelAndView.addObject("message", "Le mot de passe est incorrect. Essayez à nouveau.");
-				modelAndView.setViewName("logIn");
-			}
-		} else {
-			modelAndView.addObject("message", "L'email fourni n'existe pas !");
-			modelAndView.setViewName("logIn");
-
-		}
-
-		return modelAndView;
-	}
-
 	@RequestMapping(value = "/createEvent", method = RequestMethod.POST)
 	public String newEvent(MyEvents myEvents) {
 		System.out.println("je suis rentrée dans le formulaire create");
 		MyEventsRepo.save(myEvents);
 		System.out.println(myEvents);
-		return ("eventinfo");
+		return "index";
 
 	}
 
@@ -241,9 +217,7 @@ public class UserAccountController {
 	}
 
 	@GetMapping(value = "/eventinfo")
-	public String userInfo(Model model, Principal principal) {
-		String userName = principal.getName();
-		System.out.println("User Name: " + userName);
+	public String userInfo(Model model, Principal principal, UserApp user, HttpSession session) {
 
 		return "eventinfo";
 	}

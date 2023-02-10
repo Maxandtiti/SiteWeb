@@ -26,7 +26,7 @@ public class GestionEventController {
 
 	@GetMapping("/mesevenements/{idevent}")
 	public String MyeventsGET(@PathVariable Integer idevent, Model model)  {	 
-		model.addAttribute("user", myEventsRepository.findById(idevent).orElse(null));
+//		model.addAttribute("user", myEventsRepository.findByIduser(idevent));
 		System.out.println(model);
 		
 	    return "CRUD";

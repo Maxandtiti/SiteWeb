@@ -3,22 +3,35 @@ package fr.formation.inti.entity;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "myevents")
 public class MyEvents {
+
+	public Set<UserApp> users = new HashSet<UserApp>(0);
+	
+//	@OneToOne(fetch = FetchType.EAGER, mappedBy ="myevents")
+//	public Set<UserApp> getUsers() {
+//		return users;
+//	}
+//
+//	public void setUsers(Set<UserApp> users) {
+//		this.users = users;
+//	}
 
 	public Integer idmyevents;
 	public Integer idusers;
@@ -31,7 +44,6 @@ public class MyEvents {
 	public String preview;
 	public String sourceimage;
 	public String times;
-	@Temporal(TemporalType.DATE)
 	public Date firstdate_begin;
 	public Date firstdate_end;
 	public Date lastdate_begin;
@@ -50,8 +62,8 @@ public class MyEvents {
 	public String conditions;
 	private String adress_perso;
 
-	
 
+	
 	public MyEvents() {
 
 	}
@@ -68,8 +80,8 @@ public class MyEvents {
 	}
 
 	
-	
-	@Column(name = "idusers", length = 200)
+//	@OneToMany(fetch = FetchType.EAGER)
+	@Column(nullable = false, name = "idusers")
 	public Integer getIduser() {
 		return idusers;
 	}
@@ -78,8 +90,7 @@ public class MyEvents {
 		this.idusers = idusers;
 	}
 
-	
-	
+
 	@Column(name = "slug", length = 200)
 	public String getSlug() {
 		return slug;
@@ -171,8 +182,7 @@ public class MyEvents {
 		this.firstdate_begin = firstdate_begin;
 	}
 
-//	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd-mm-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@Column(name = "firstdate_end")
 	public Date getFirstdate_end() {
 		return firstdate_end;
@@ -182,8 +192,7 @@ public class MyEvents {
 		this.firstdate_end = firstdate_end;
 	}
 
-//	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd-mm-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@Column(name = "lastdate_begin")
 	public Date getLastdate_begin() {
 		return lastdate_begin;
@@ -193,8 +202,7 @@ public class MyEvents {
 		this.lastdate_begin = lastdate_begin;
 	}
 
-//	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd-mm-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@Column(name = "lastdate_end")
 	public Date getLastdate_end() {
 		return lastdate_end;
@@ -204,7 +212,6 @@ public class MyEvents {
 		this.lastdate_end = lastdate_end;
 	}
 
-//	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd-mm-yyyy")
 	@Column(name = "detailed_times", length = 500)
 	public String getDetailed_times() {
@@ -316,7 +323,7 @@ public class MyEvents {
 
 	@Override
 	public String toString() {
-		return "MyEvents [idmyevents=" + idmyevents + ", idusers=" + idusers + ", slug=" + slug + ", title=" + title
+		return "MyEvents [idmyevents=" + idmyevents + ", slug=" + slug + ", title=" + title
 				+ ", description=" + description + ", longdescription=" + longdescription + ", keywords=" + keywords
 				+ ", image=" + image + ", preview=" + preview + ", sourceimage=" + sourceimage + ", times=" + times
 				+ ", firstdate_begin=" + firstdate_begin + ", firstdate_end=" + firstdate_end + ", lastdate_begin="
@@ -327,6 +334,5 @@ public class MyEvents {
 				+ phone_number + ", email=" + email + ", conditions=" + conditions + ", adress_perso=" + adress_perso
 				+ "]";
 	}
-
 
 }

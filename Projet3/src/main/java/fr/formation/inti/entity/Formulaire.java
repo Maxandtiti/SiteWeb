@@ -1,7 +1,5 @@
 package fr.formation.inti.entity;
 
-import java.util.Date;
-
 public class Formulaire {
 	
 	private String keywords;
