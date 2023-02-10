@@ -219,9 +219,9 @@ public class UserAccountController {
 
 	@GetMapping(value = "/eventinfo")
 	public String userInfo(Model model, Principal principal, UserApp user, HttpSession session) {
-
 		return "eventinfo";
 	}
+
 
 	public UserAppRepository getUserRepository() {
 		return userRepository;

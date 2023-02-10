@@ -35,4 +35,27 @@ public class PageEventController {
 			  }
 			}
 	
+	
+	@GetMapping("/privateevent/{id}")
+	public String PrivateeventsGET(@PathVariable String id) {	  
+
+		try {
+			    URL url = new URL(String.format("http://localhost:8080/api/myevents/%s", id));
+			    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			    connection.setRequestMethod("GET");
+			    connection.setDoInput(true);
+
+			    int status = connection.getResponseCode();
+			    if (status != 200) {
+			      throw new Exception("Erreur de réponse du serveur");
+			    }
+
+			    return "eventinfoprivate";
+			  } catch (Exception ex) {
+		
+			    return "error";
+			  }
+			}
+	
+	
 }

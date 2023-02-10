@@ -44,13 +44,10 @@
 const uri = window.location.pathname;
 const eventId = uri.split('/').pop();
 
-// http://localhost:8080/api/myevents/${eventId}
-
-console.log(uri);
-console.log(eventId);
 
 
-fetch(`https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-publics-openagenda/records/${eventId}`)
+
+fetch(`http://localhost:8080/api/myevents/${eventId}`)
 .then((response) => {
   if (!response.ok) {
     throw new Error("Erreur de réponse du serveur");
@@ -59,27 +56,40 @@ fetch(`https://public.opendatasoft.com/api/v2/catalog/datasets/evenements-public
 })
 .then((json) => {
 
-    document.getElementById("titre").innerHTML = json.record.fields.title_fr;
-    document.getElementById("description").innerHTML = json.record.fields.longdescription_fr
-    document.getElementById("keywords").innerHTML = json.record.fields.keywords_fr
-    document.getElementById("daterange").innerHTML = json.record.fields.daterange_fr
-    const conditions = json.record.fields.conditions_fr
+    document.getElementById("titre").innerHTML = json.title;
+    
+    
+    
+    document.getElementById("description").innerHTML = json.longdescription
+    document.getElementById("keywords").innerHTML = json.keywords
+    document.getElementById("daterange").innerHTML = json.times
+    const conditions = json.conditions
     document.getElementById("conditions").innerHTML = conditions
 
 
-    
-    console.log(document.getElementById("conditions").innerHTML = json.record.fields.conditions_fr)    
     
      if (conditions == null) {
 	      		    document.getElementById("conditions-section").style.display = "none";
 	      		  }
     
     
-    document.getElementById("img").src = json.record.fields.image;
-
     
+    
+    // Image
+     
+    	const img = json.preview;
+    
+    	document.getElementById("img").src = img
+    	if (img == null) {
+   	     document.getElementById("imageABS-section").style.display = "block";
+     document.getElementById("image-section").style.display = "none";
+    	}
+    
+   
+
+    /*
    //  Récupération du tableau dans le json + récupérer le mois
-      const timingArray = JSON.parse(json.record.fields.timings);
+      const timingArray = JSON.parse(json.record.fields.timings); // PAS FAIT
    	  const output = timingArray.map(item => {
       const begin = new Date(item.begin);
       const end = new Date(item.end);
@@ -104,36 +114,34 @@ ${output.join("")}
 </table>
 `;
 
-
+*/
  		  
  	// Adresse location_address	  
  	
- 	const region = json.record.fields.location_region;
- 	const postalcode = json.record.fields.location_postalcode;
+ 	const region = json.department;
+ 	const zipcode = json.zipcode;
  	
- 	let adresse;
+ 	let address;
  	
- 	if ((region == null) && (postalcode == null)) {
- 	  adresse = json.record.fields.location_address;	
+ 	if ((region == null) && (zipcode == null)) {
+ 	  adresse = json.address;	
   	} else if (region == null) {
- 	  adresse = json.record.fields.location_address + ' ' + postalcode;
- 	} else if (postalcode == null) {
- 		adresse = json.record.fields.location_address + ' - ' + region
+ 	  adresse = json.address + ' ' + zipcode;
+ 	} else if (zipcode == null) {
+ 		adresse = json.address + ' - ' + region
  	} else {
- 		adresse = json.record.fields.location_address + ' ' + postalcode +  ' - '  + region
+ 		adresse = json.address + ' ' + zipcode +  ' - '  + region
  	}
 
  		document.getElementById("adresse").innerHTML = adresse;
  	
- 		  console.log(adresse);
- 	
+ 		
  	// Coordonnées + minimap
- 	const longlat = json.record.fields.location_coordinates;
- 	const {lon, lat} = longlat;
- 	const latitude = JSON.stringify(lat);
- 	const longitude = JSON.stringify(lon);
+ 	const longlat = json.location_coordinates;
+ 	const [latitude, longitude] = longlat.split(", ");
 
  
+ 	
  	 var map = L.map('map').setView([latitude, longitude], 13);
      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -144,9 +152,8 @@ ${output.join("")}
      
  		  
  	// Accessibilité hi;pi:mi;vi  
- 	const access = json.record.fields.accessibility;
- 	  
- 	console.log(access);
+ 	const access = json.accessibility;
+ 	
  	
  	
  	let vi = "<i class='fa-solid fa-question'></i>";
@@ -191,81 +198,41 @@ ${output.join("")}
 	    
 	 	  // Extraire le tableau registration contenant Phone + Email + Link
 
-	 	  	 const registrationData = json.record.fields.registration;
-	 	     let registration;
-	 	    
-	 	     if (registrationData !== undefined || registrationData !== null) {
-		 	     registration = JSON.parse(registrationData);
-		 	     }
-	 	  
-	 	  
-	 	     let link, phone, email;
 	 	   
-	 	     const phoneList = document.getElementById("phone-list");
-	 	     const emailList = document.getElementById("email-list");
-	 	     const linkList = document.getElementById("link-list");
-	 	    
-
+	 	     const phone = json.phone_number;
+	 	     const email = json.email;
+	 	     const lien = json.adress_perso;
 	 	     
-	 	   if (registration != null || registration != undefined) {
-	 	    	// Phone
-	 	 		registration.forEach(function(item) {
-	 	 		if (item.type === 'phone') {
-	 	 		phone = item.value;
-	 	 		let node = document.createElement("LI");
-	 	 		let textnode = document.createTextNode(phone);
-	 	 		node.appendChild(textnode);
-	 	 		phoneList.appendChild(node);
-	 	 		}
-	 	 		});
-
-	 	 	// Email
-	 	 		registration.forEach(function(item) {
-	 	 		if (item.type === 'email') {
-	 	 		email = item.value;
-	 	 		let node = document.createElement("LI");
-	 	 		let textnode = document.createTextNode(email);
-	 	 		node.appendChild(textnode);
-	 	 		emailList.appendChild(node);
-	 	 		}
-	 	 		
-	 	 		});
-
-	 	 	// Link + limite de caractères + lien cliquable
-	 	 		 registration.forEach(function(item) {
-	 	 			  if (item.type === 'link') {
-	 	 			    link = item.value;
-	 	 			    if (link.length > 20) {
-	 	 			      link = link.substring(0, 25) + '...';
-	 	 			    }
-	 	 			    let linkItem = document.createElement('li');
-	 	 			    let linkElement = document.createElement('a');
-	 	 			    linkElement.href = item.value;
-	 	 			    linkElement.innerHTML = link;
-	 	 			    linkItem.appendChild(linkElement);
-	 	 			    linkList.appendChild(linkItem);
-	 	 			  }
-	 	 			  });
-	 	    	
-	 	    	
-	 	   }
-	 	      	
-	 	     	
+	 
+	 	    const link = lien.length > 20 ? lien.substr(0, 30) + "..." : lien;
+	 	    const linkElement = `<a href="${lien}" target="_blank">${link}</a>`;
+	 	   document.getElementById("linkElement").innerHTML = linkElement;
+	 	 
+		 document.getElementById("phone").innerHTML = phone;
+	 	 document.getElementById("email").innerHTML = email;
+	 	 document.getElementById("link").innerHTML = link; 	     
+	 	
+	 	 
 	 	// Vérifier si les Nodelist sont vides, dans ce cas rajouter un display none sur les sections correspondantes
-	 	      		 if (phoneList.childNodes.length === 0) {
+	 	      		 if (phone == null) {
 	 	      		    document.getElementById("phone-section").style.display = "none";
 	 	      		  }
-	 	      		  if (emailList.childNodes.length === 0) {
+	 	      		  if (email == null) {
 	 	      		    document.getElementById("email-section").style.display = "none";
 	 	      		  }
-	 	      		  if (linkList.childNodes.length === 0) {
+	 	      		  if (link == null) {
 	 	      		    document.getElementById("link-section").style.display = "none";
 	 	      		  }
 
   })
 
     .catch((error) => {
-        console.error("Erreur: ", error);
+    	 if (error.message === 'Unexpected end of JSON input') {
+    		    // Redirection vers la page d'erreur
+    		    window.location.replace('/error');
+    	 }
+    	
+    	console.error("Erreur: ", error);
       
         throw error;
 
@@ -286,7 +253,7 @@ ${output.join("")}
 
 <body class="d-flex flex-column min-vh-100">
 
-
+	<div th:include="_header :: _header"></div>
     <!-- Information événement 23.01.07-20:11 -->
 
 
@@ -319,19 +286,19 @@ ${output.join("")}
                             <div class="detail-item margin-bottom-sm" id="phone-section">
                                 <i class="fa-solid fa-phone icon"></i>
                                 <p class="detail-item-content" >
-                                    <span id="phone-list"></span>
+                                    <span id="phone"></span>
                                 </p>
                             </div>
                             <div class="detail-item margin-bottom-sm" id="email-section">
                                 <i class="fa-solid fa-envelope icon"></i>
                                 <p class="detail-item-content">
-                                    <span id="email-list"></span>
+                                    <span id="email"></span>
                                 </p>
                             </div>
                               <div class="detail-item margin-bottom-sm" id="link-section">
                                 <i class="fa-solid fa-at icon"></i>
                                 <p class="detail-item-content">
-                                    <span id="link-list"></span>
+                                    <span id="linkElement"></span>
                                 </p>
                             </div>
                             <hr class="my-2">
@@ -415,8 +382,11 @@ ${output.join("")}
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="col">
-                            <img src="" id="img" class="img-fluid" alt="photo_event">
+                        <div class="col text-center" id="image-section">
+                            <img id="img" class="img-fluid" alt="photo_event">
+                        </div>
+                         <div class="col text-center" id="imageABS-section" style="display: none">
+                         <strong><span>Pas d'image disponible</span></strong>
                         </div>
                         <div class="pl-lg-4 py-4">
                             <div class="row" id="description">
@@ -431,7 +401,7 @@ ${output.join("")}
 
 </body>
 
-
+	<div th:include="_footer :: _footer"></div>
 
 
 </html>
