@@ -29,7 +29,11 @@
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
 <title>Création d'un événement</title>
+
 
 </head>
 
@@ -78,7 +82,7 @@
 
 													<div class="mb-3">
 														<label class="form-control-label">URL Image</label>
-														<input type="text" name="image"
+														<input type="text" name="preview"
 															class="
 															form-control form-control-alternative"
 															placeholder="URL Image" maxlength="100">
@@ -95,7 +99,7 @@
 												<div class="form-group focused">
 													<label class="form-control-label">Description</label>
 													<textarea class="form-control" rows="5"
-														placeholder=" ........" maxlength="600" name="description"></textarea>
+														placeholder=" ........" maxlength="600" name="longdescription"></textarea>
 												</div>
 											</div>
 										</div>
@@ -190,13 +194,30 @@
 
 								<div class="card border-0">
 									<div class="card-body">
+									
+									
+									
 										<!-- Localisation-->
+										
 										<div class="row">
+											<div class="form-group focused">
+													<label class="form-control-label">Résumé des dates</label>
+													<input type="text" name="times"
+														class="form-control form-control-alternative"
+														placeholder="Exemple: 08 Novembre 2023 au 15 Novembre 2023" maxlength="150">
+
+												</div>
+											
+											</div>
+										<div class="row">
+										
+										
+										
 											<div class="col">
 
 												<div class="form-group focused">
 													<label class="form-control-label">Adresse</label>
-													<input type="text" name="adress"
+													<input type="text" name="address"
 														class="form-control form-control-alternative"
 														placeholder="Adresse" maxlength="150">
 
@@ -277,7 +298,7 @@
 														<input type="text"
 															class="form-control form-control-alternative"
 															name="conditions"
-															placeholder="ex:Entrées à 20€ avec boisson ou Gratuit"
+															placeholder="Exemple: Entrées à 20€ avec une boisson offerte"
 															maxlength="150">
 													</div>
 												</div>
