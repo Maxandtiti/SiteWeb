@@ -1,6 +1,8 @@
 package fr.formation.inti.controller;
 
 import java.security.Principal;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
@@ -105,6 +107,56 @@ public class UserAccountController {
 
 		return modelAndView;
 	}
+	
+
+	
+//	A APPROFONDIR
+//	
+//	@RequestMapping(value = "/register", method = RequestMethod.POST)
+//	public ModelAndView registerUser(ModelAndView modelAndView, UserApp user) {
+//	    // Check for valid email format
+//	    String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+//	    Pattern pattern = Pattern.compile(emailRegex);
+//	    Matcher matcher = pattern.matcher(user.getEmail());
+//	    if (!matcher.matches()) {
+//	        modelAndView.addObject("message", "Email format incorrect");
+//	        modelAndView.setViewName("error");
+//	    } else {
+//	        UserApp existingUser = userRepository.findByEmail(user.getEmail());
+//	        if (existingUser != null) {
+//	            modelAndView.addObject("message", "Cet email existe déjà !");
+//	            modelAndView.setViewName("error");
+//	        } else {
+//	            user.setPassword(encoder.encode(user.getPassword()));
+//	            user.setRole("USER");
+//	            userRepository.save(user);
+//
+//	            ConfirmationToken confirmationToken = new ConfirmationToken(user);
+//
+//	            confirmationTokenRepository.save(confirmationToken);
+//
+//	            SimpleMailMessage mailMessage = new SimpleMailMessage();
+//	            mailMessage.setTo(user.getEmail());
+//	            mailMessage.setSubject("Confirmer votre inscription");
+//	            mailMessage.setFrom("eventwebapp212@gmail.com");
+//	            mailMessage.setText("Pour confirmer votre compte, cliquez ici : "
+//	                    + "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
+//
+//	            emailSenderService.sendEmail(mailMessage);
+//
+//	            modelAndView.addObject("email", user.getEmail());
+//
+//	            modelAndView.setViewName("successfulRegisteration");
+//	        }
+//	    }
+//
+//	    return modelAndView;
+//	}
+
+	
+	
+	
+	
 
 	// Confirm registration
 	@RequestMapping(value = "/confirm-account", method = { RequestMethod.GET, RequestMethod.POST })
@@ -222,28 +274,28 @@ public class UserAccountController {
 		return "eventinfo";
 	}
 
-	public UserAppRepository getUserRepository() {
-		return userRepository;
-	}
-
-	public void setUserRepository(UserAppRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-
-	public ConfirmationTokenRepository getConfirmationTokenRepository() {
-		return confirmationTokenRepository;
-	}
-
-	public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
-		this.confirmationTokenRepository = confirmationTokenRepository;
-	}
-
-	public EmailSenderService getEmailSenderService() {
-		return emailSenderService;
-	}
-
-	public void setEmailSenderService(EmailSenderService emailSenderService) {
-		this.emailSenderService = emailSenderService;
-	}
+//	public UserAppRepository getUserRepository() {
+//		return userRepository;
+//	}
+//
+//	public void setUserRepository(UserAppRepository userRepository) {
+//		this.userRepository = userRepository;
+//	}
+//
+//	public ConfirmationTokenRepository getConfirmationTokenRepository() {
+//		return confirmationTokenRepository;
+//	}
+//
+//	public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
+//		this.confirmationTokenRepository = confirmationTokenRepository;
+//	}
+//
+//	public EmailSenderService getEmailSenderService() {
+//		return emailSenderService;
+//	}
+//
+//	public void setEmailSenderService(EmailSenderService emailSenderService) {
+//		this.emailSenderService = emailSenderService;
+//	}
 
 }
