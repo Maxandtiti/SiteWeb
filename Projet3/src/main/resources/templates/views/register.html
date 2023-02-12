@@ -110,15 +110,6 @@
 
 								<br>
 
-								<div class="form-group row">
-									<label class="col-4 col-form-label" for="input-rmdp">Répéter
-										le mot de passe </label>
-									<div class="col-8">
-										<input type="password" id="repeatpassword"
-											class="form-control" required
-											placeholder="Répéter le mot de passe" maxlength="45" />
-									</div>
-								</div>
 
 
 								<!-- <div class="row">
@@ -239,16 +230,4 @@
 	<div th:include="_footer :: _footer"></div>
 </body>
 
-<script>
-	$('#Créer le compte').click(
-			function() {
-				if ($('#password').val() != $('#repeatpassword').val()) {
-					$('#message').html('Mots de passe non identiques').css(
-							'color', 'red');
-					return false;
-				} else {
-					$('#message').html('Succès').css('color', 'green');
-				}
-			});
-</script>
 </html>
